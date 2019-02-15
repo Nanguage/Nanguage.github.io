@@ -27,6 +27,9 @@ function maximize () {
 			cont.style.width = "99.4%";
 		}
 	}
+
+	// change height
+	cont.style.maxHeight = ""
 }
 
 function max_btn_click () {
@@ -49,6 +52,9 @@ function minimize () {
 		post.style.width = "800px";
 		cont.style.width = "98.5%";
 	}
+
+	// change height
+	cont.style.maxHeight = "600px"
 }
 
 function min_btn_click () {
@@ -58,5 +64,19 @@ function min_btn_click () {
 	}
 }
 
-max.addEventListener('click', maximize, false);
-min.addEventListener('click', minimize, false);
+
+function init_content() {
+	max.addEventListener('click', max_btn_click, false);
+	min.addEventListener('click', min_btn_click, false);
+	var cont = document.getElementsByClassName("post_content")[0];
+	//cont.style.maxHeight = "600px"
+}
+
+
+function init() {
+	if (document.getElementsByClassName("content")[0]) {
+		init_content()
+	}
+}
+
+window.onload = init
