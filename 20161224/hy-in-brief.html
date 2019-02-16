@@ -99,7 +99,7 @@
 			<div class="post_content" style="max-height: 600px">
         		<p>前几天我在这篇<a href="http://blog.rainy.im/2016/12/04/fp-with-py/">Python函数式编程从入门到走火入魔</a>里看到了这样一门Python生态下的Lisp方言—<a href="https://github.com/hylang/hy">Hy</a>，惊为天人，原来还有这么好玩的东西！虽然我没什么Lisp水平吧，SICP断断续续的读了不知道多长时间了，现在处于一种从入门到放弃的状态中，但我一直还是非常想深入了解一下Lisp和函数式编程的，而且令人兴奋的是它是根植于Python生态的，也就是说可以用Lisp写requests爬虫，写Flask网站，用Pandas分析数据，所有Python生态下极具生产力的库还可以用！还是原来的味道！这是多么cool的事情啊～</p>
 
-<p><img src="http://op3kteb6u.bkt.clouddn.com/2016-12-14%2023-18-32%20%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="https://xkcd.com/224/" /></p>
+<p><img src="https://camo.githubusercontent.com/2ea3c517525377dbb66d22c6e27dd2334af4731e/68747470733a2f2f7261772e6769746875622e636f6d2f68796c616e672f73687974652f313866363932356530383638346230653166353262326363326338303339383963643632636439312f696d67732f786b63642e706e67" alt="https://xkcd.com/224/" /></p>
 
 <p>关于Lisp这门语言的一些情况这里也不多说了，如果你不是特别了解建议阅读这篇<a href="http://www.cnblogs.com/Leap-abead/articles/762180.html">Lisp的本质</a>和阮一峰翻译的<a href="http://www.ruanyifeng.com/blog/2010/10/why_lisp_is_superior.html">这篇博文</a>。Hy是众多Lisp方言中的一种，将代码编译成Python的字节码后交给解释器解释运行，Hy之于Python类似于<a href="https://en.wikipedia.org/wiki/Clojure">Clojure</a>（另一种基于JVM的Lisp方言）之于Java，它们都是作为目标语言虚拟机的前端来利用目标语言的生态。
 <!-- more --></p>
@@ -111,10 +111,7 @@
 # 注意 这里不要直接 pip install hy 这样从pypi直接安装，有坑...我已经踩过了
 </code></pre>
 <p>安装之后可以尝试一下在终端里输入hy然后敲回车就能进入它的REPL，就和Python的REPL一样，你可以通过在里面尝试敲一下代码来学习它的语法和调试代码。
-至于编辑器，用vim的话推荐<a href="https://github.com/hylang/vim-hy">vim-hy</a>这个插件，除了提供语法高亮和缩进外，还能把一些符号排版成类似数学符号的Unicode字符，就像下面这样，看起来挺不(zhuang)错(bi)的。</p>
-
-<p><img src="http://op3kteb6u.bkt.clouddn.com/2016-12-19%2015-57-14%20%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="vim-hy" />
-如果你钟爱的编辑器没有hy的插件，那么用cloure的语法高亮和缩进规则也可以。</p>
+至于编辑器，用vim的话推荐<a href="https://github.com/hylang/vim-hy">vim-hy</a>这个插件，除了提供语法高亮和缩进外，还能把一些符号排版成类似数学符号的Unicode字符。</p>
 
 <h2 id="动手写">动手写</h2>
 
@@ -124,7 +121,7 @@
 (import time)
 
 (.xkcd plt)
-(def (, fig, ax) (.subplots plt))
+(setv (, fig, ax) (.subplots plt))
 
 (defn draw-circle [r0 r-max r-step]
   (setv r r0)
@@ -137,9 +134,11 @@
 (.show plt)
 </code></pre>
 
-<p>运行后就能得到这样一副xkcd风格的图像，好像线条有点太密集了，有点辣眼睛…
-<img src="http://op3kteb6u.bkt.clouddn.com/happyhackwhy.png" alt="happyhackwhy" />
-接下来，我们就来比较详细地了解一下这门语言吧，你不需要懂Lisp（实际上我也不懂( ´･ω) …），只要对Python有所了解，那么你看完接下来的文字后，一定是能够理解它的。</p>
+<p>运行后就能得到这样一副xkcd风格的图像，好像线条有点太密集了…</p>
+
+<p><img src="/images/blog/happyhackwithhy.png" alt="happyhackwhy" /></p>
+
+<p>接下来，我们就来比较详细地了解一下这门语言吧，你不需要懂Lisp（实际上我也不懂( ´･ω) …），只要对Python有所了解，那么你看完接下来的文字后，一定是能够理解它的。</p>
 
 <h3 id="伪装成lisp的python">伪装成Lisp的Python</h3>
 
@@ -285,6 +284,7 @@ second line
 <h2 id="函数式编程">函数式编程</h2>
 
 <p>虽然在Hy里所有的东西还是可以用Python的思路来搞，不过既然是Lisp方言，那么在这里一定会比Python有更多的对函数式编程的支持了。根据对函数式编程肤浅的理解，函数式编程的思路是通过函数间的耦合组建数据处理的管道，在写法上尽量少定义中间变量，尽量控制函数副作用。下面举几个Hy中与函数式编程有关的语法特性。</p>
+
 <pre><code class="language-clojure">;首先Python中的 map、reduce、filter 以及 lambda 这些函数式编程的基本组件在Hy中还是一样的
 ;lambda算子(匿名函数) 和可以使用fn或者lambda来表示
 =&gt; (fn [x] (+ x 1))
@@ -311,8 +311,9 @@ second line
 
 <h5 id="尾递归优化">尾递归优化</h5>
 
-<p><img src="https://imgs.xkcd.com/comics/functional.png" alt="" />
-函数式编程尽量不修改状态而使用函数的参数来传递状态所以会使用递归的写法，为了避免递归带来的爆栈问题，很多函数是编程语言都会引入了<a href="http://www.ruanyifeng.com/blog/2015/04/tail-call.html">尾递归优化</a>，Hy中没有那种直接的对函数的尾递归优化，尾递归需要借助外部宏来完成，而且经我测试尾递归优化代码的执行速度比较慢…这还是挺遗憾的。</p>
+<p><img src="https://imgs.xkcd.com/comics/functional.png" alt="" /></p>
+
+<p>函数式编程尽量不修改状态而使用函数的参数来传递状态所以会使用递归的写法，为了避免递归带来的爆栈问题，很多函数是编程语言都会引入了<a href="http://www.ruanyifeng.com/blog/2015/04/tail-call.html">尾递归优化</a>，Hy中没有那种直接的对函数的尾递归优化，尾递归需要借助外部宏来完成，而且经我测试尾递归优化代码的执行速度比较慢…这还是挺遗憾的。</p>
 <pre><code class="language-clojure">(require [hy.contrib.loop [loop]]) ;导入外部宏
 
 (defn factorial [n]
@@ -323,13 +324,13 @@ second line
       ;通过recur进入下一轮递归，如果recur不写在结尾位置就会报错
       (recur (dec i) (* acc i)))))
 
-(factorial 1000)```
+(factorial 1000)
+</code></pre>
 
-##### 管道
+<h5 id="管道">管道</h5>
 
-函数式编程中为了尽量不去使用中间变量经常需要对函数进行组合使用，这时就要使用嵌套调用的写法，举一个简单的例子，比如我们要把从0到99的所有数字进行乘方后加1然后再筛选出其中的奇数。用函数式的写法，不使用中间变量，可以这样一行搞定：
-``` clojure
-=&gt; (filter odd? (map inc (map (fn [x] (* x x)) (range 100))))
+<p>函数式编程中为了尽量不去使用中间变量经常需要对函数进行组合使用，这时就要使用嵌套调用的写法，举一个简单的例子，比如我们要把从0到99的所有数字进行乘方后加1然后再筛选出其中的奇数。用函数式的写法，不使用中间变量，可以这样一行搞定：</p>
+<pre><code class="language-clojure">=&gt; (filter odd? (map inc (map (fn [x] (* x x)) (range 100))))
 
 =&gt; (list _)
 [1L, 5L, 17L, 37L, 65L, 101L, 145L, 197L, 257L, 325L, 401L, ...]
@@ -361,8 +362,9 @@ second line
 
 <h2 id="来自lisp的力量宏">来自Lisp的力量:宏</h2>
 
-<p><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/DrawingHands.jpg/300px-DrawingHands.jpg" alt="《画手》 埃舍尔" />
-宏(Macro)是什么呢？你可能在C语言中使用过宏来对变量进行替换，在Lisp中宏是一种更为强大的机制，它不像C那样通过预处理器来工作而是直接使用Lisp解释器对其进行解释（这意味着宏的地位和其它程序代码是相同的），在Lisp中宏能像函数那样接受参数，得到参数后会对原来的S表达式按照特定方式展开成新的S表达式。在代码被解释的过程中经历了两个阶段，第一个阶段代码本身被当做数据被宏进行展开，第二个阶段才被解释器当做“代码”来进行解释，这体现“代码即数据”这一思想。简单来说宏就是用来生成代码的代码，也就是所谓的元编程，经常有人拿埃舍尔的《画手》中的描绘的场景来进行比喻元编程，用来写代码的代码就仿佛埃舍尔画中那正在画手的手。
+<p><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/DrawingHands.jpg/300px-DrawingHands.jpg" alt="《画手》 埃舍尔" /></p>
+
+<p>宏(Macro)是什么呢？你可能在C语言中使用过宏来对变量进行替换，在Lisp中宏是一种更为强大的机制，它不像C那样通过预处理器来工作而是直接使用Lisp解释器对其进行解释（这意味着宏的地位和其它程序代码是相同的），在Lisp中宏能像函数那样接受参数，得到参数后会对原来的S表达式按照特定方式展开成新的S表达式。在代码被解释的过程中经历了两个阶段，第一个阶段代码本身被当做数据被宏进行展开，第二个阶段才被解释器当做“代码”来进行解释，这体现“代码即数据”这一思想。简单来说宏就是用来生成代码的代码，也就是所谓的元编程，经常有人拿埃舍尔的《画手》中的描绘的场景来进行比喻元编程，用来写代码的代码就仿佛埃舍尔画中那正在画手的手。
 接下来开始说一说Hy中的宏。实际上你可能注意到了之前提到的语法特性比如threading还有loop recur和ap-pipe都是通过宏来实现的。除了使用语言内建的宏和用require导入外部宏，我们也可以自己定义宏，举一个例子，我们现在有以下四种计算fibonacci数列的函数写法，需要检验它们的运行效率：</p>
 <pre><code class="language-clojure">(require [hy.contrib.loop [loop]])
 (import time)
