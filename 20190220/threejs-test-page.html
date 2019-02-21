@@ -227,7 +227,10 @@ var loader = new THREE.GLTFLoader();
 loader.load(
    "/3d/lowpoly_island.glb",
    function ( gltf ) {
-       console.log(gltf)
+        console.log(gltf)
+        gltf.scene.traverse(function ( node ) {
+  	        if ( node.isMesh ) node.material.side = THREE.DoubleSide;
+        });
        scene.add(gltf.scene)
    },
 );
