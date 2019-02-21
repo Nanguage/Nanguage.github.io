@@ -114,7 +114,7 @@ var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHe
 var controls = new THREE.OrbitControls( camera );
 
 //controls.update() must be called after any manual changes to the camera's transform
-camera.position.set( 0, 0, 100 );
+camera.position.set( 20, 10, 30 );
 controls.update();
 
 function animate() {
@@ -127,7 +127,7 @@ function animate() {
 var display = document.getElementsByClassName("display")[0]
 display.appendChild( renderer.domElement );
 renderer.domElement.style.width  = "600px"
-renderer.domElement.style.height = "600px"
+renderer.domElement.style.height = "400px"
 
 var loader = new THREE.GLTFLoader();
 loader.load(
@@ -141,11 +141,7 @@ loader.load(
 var light = new THREE.AmbientLight( 0x404040 ); // soft white light
 scene.add( light );
 
-var light = new THREE.PointLight( 0xff0000, 1, 100 );
-light.position.set( 50, 50, 50 );
-scene.add( light );
-
-var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+var directionalLight = new THREE.DirectionalLight( 0xfffeff, 1 );
 scene.add( directionalLight );
 
 animate()
