@@ -4,7 +4,7 @@
 var max = document.getElementsByClassName("btn")[1];
 var min = document.getElementsByClassName("btn")[2];
 
-var status = "normal" // "normal", "maxmize"
+var zoom_status = "normal" // "normal", "maxmize"
 var explorer = document.getElementsByClassName("wrapper")[0]
 
 function maximize () {
@@ -33,9 +33,9 @@ function maximize () {
 }
 
 function max_btn_click () {
-	if ( status == "normal" ) {
+	if ( zoom_status == "normal" ) {
 		maximize()
-		status = "maxmize"
+		zoom_status = "maxmize"
 	}
 }
 
@@ -58,9 +58,9 @@ function minimize () {
 }
 
 function min_btn_click () {
-	if ( status == "maxmize" ) {
+	if ( zoom_status == "maxmize" ) {
 		minimize()
-		status = "normal"
+		zoom_status = "normal"
 	}
 }
 
