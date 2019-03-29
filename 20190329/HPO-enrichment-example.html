@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<link rel="stylesheet" href="/assets/css/atom-one-light.css">
     
-        <title>three.js test page</title>
+        <title>HPO enrichment example</title>
 		<link rel="stylesheet" type="text/css" href="/assets/css/002.css">
     
 	<link rel="stylesheet" href="/assets/css/font-awesome.min.css">
@@ -172,67 +172,17 @@
 	
         <div class="content">
 			<div class="post_title">
-				<img src="/assets/img/tree.png" />
-				<h1>three.js test page</h1>
+				<img src="/assets/img/notebook.ico" />
+				<h1>HPO enrichment example</h1>
 				<a href="/"><div class="btn"><span class="fa fa-times"></span></div></a>
 				<div class="btn btn_max"><span class="fa fa-window-maximize"></span></div>
 				<div class="btn"><span class="fa fa-window-minimize"></span></div>
 			</div>
 			<ul class="topbar">
-				<li>February 20, 2019</li>
+				<li>March 29, 2019</li>
 			</ul>
 			<div class="post_content" style="max-height: 600px">
-        		<html>
-<script src="/assets/js/three.js"></script>
-<script src="/assets/js/OrbitControls.js"></script>
-<script src="/assets/js/GLTFLoader.js"></script>
-<div class="display"></div>
-<script>
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
-
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
-var controls = new THREE.OrbitControls( camera );
-
-//controls.update() must be called after any manual changes to the camera's transform
-camera.position.set( 20, 10, 30 );
-controls.update();
-
-function animate() {
-    requestAnimationFrame( animate );
-    // required if controls.enableDamping or controls.autoRotate are set to true
-    controls.update();
-    renderer.render( scene, camera );
-}
-
-var display = document.getElementsByClassName("display")[0]
-display.appendChild( renderer.domElement );
-renderer.domElement.style.width  = "600px"
-renderer.domElement.style.height = "400px"
-
-var loader = new THREE.GLTFLoader();
-loader.load(
-   "/3d/lowpoly_island.glb",
-   function ( gltf ) {
-        console.log(gltf)
-        gltf.scene.traverse(function ( node ) {
-  	        if ( node.isMesh ) node.material.side = THREE.DoubleSide;
-        });
-       scene.add(gltf.scene)
-   },
-);
-
-var light = new THREE.AmbientLight( 0x404040 ); // soft white light
-scene.add( light );
-
-var directionalLight = new THREE.DirectionalLight( 0xfffeff, 1 );
-scene.add( directionalLight );
-
-animate()
-</script>
-</html>
+        		
 
 				
 					<br>
