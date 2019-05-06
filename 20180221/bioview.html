@@ -52,6 +52,12 @@
 				<ul>
 					
 					<li>
+						<a href="/examples/pubnet/sample.html" title="PubMed bio-conception network example">
+								<img src="/assets/img/net.png" title="PubMed bio-conception network example" />PubMed bio-conception network example
+						</a>
+					</li>
+					
+					<li>
 						<a href="/examples/hpo_enrich/example_sagd_00055.html" title="HPO enrichment example">
 								<img src="/assets/img/notebook.ico" title="HPO enrichment example" />HPO enrichment example
 						</a>
@@ -164,7 +170,7 @@
 		</div>
 		<div class="post_total">
 			
-				<div class="left">18 object(s)</div>
+				<div class="left">19 object(s)</div>
 			
 			<div class="right">&nbsp;</div>
 		</div>
@@ -197,17 +203,17 @@
 
 <!-- more -->
 
-<h2 id="设计初衷">设计初衷</h2>
+<h2 id="section">设计初衷</h2>
 
-<p>在很多时候，生物信息分析几乎是一直在围绕着某一些特定格式的文件格式进行的，比如 fasta, fastq, sam, bam 等等。
-也许是考虑能使得文件容易被程序解析，或是容易被人所阅读，这些文件格式中的很大一部分都被设计成了文本文件。
-另外考虑到这些文件的大小，动辄就是十几甚至几十上百 G ，
-所以我们一般不会使用常规的文本编辑器打开，而是使用 Unix 下的 <code>less</code>, <code>head</code>, <code>tail</code> 等工具来对其进行查看。
-而这些工具默认情况下并不支持对这些生物信息特定文件格式的色彩高亮、重排版等功能，
+<p>在很多时候，生物信息分析几乎是一直在围绕着某一些特定格式的文件格式进行的，比如 fasta, fastq, sam, bam 等等。<br />
+也许是考虑能使得文件容易被程序解析，或是容易被人所阅读，这些文件格式中的很大一部分都被设计成了文本文件。<br />
+另外考虑到这些文件的大小，动辄就是十几甚至几十上百 G ，<br />
+所以我们一般不会使用常规的文本编辑器打开，而是使用 Unix 下的 <code>less</code>, <code>head</code>, <code>tail</code> 等工具来对其进行查看。<br />
+而这些工具默认情况下并不支持对这些生物信息特定文件格式的色彩高亮、重排版等功能，<br />
 造成了我们在对文件进行观察、检查时存在较大的认知障碍，难以快速从中观察出符号串之中潜在的模式、规律。</p>
 
-<p>至少对于我来说，在很多情况下这对我的工作造成了麻烦，比如在有些时候，我想在写代码前确定某一段实验中设计的 index 序列在 fastq records 中的大概位置，以便我对程序进行调整。
-但使用 <code>less</code> 进行查看时，面对整屏幕的黑白字符，难以从其中一眼看出 index 序列所处的位置。
+<p>至少对于我来说，在很多情况下这对我的工作造成了麻烦，比如在有些时候，我想在写代码前确定某一段实验中设计的 index 序列在 fastq records 中的大概位置，以便我对程序进行调整。<br />
+但使用 <code>less</code> 进行查看时，面对整屏幕的黑白字符，难以从其中一眼看出 index 序列所处的位置。<br />
 又比如说，有时在对 fastq 文件进行预处理时，需要将 reads 末端低质量的序列 trim 掉，但有时候软件默认的参数并不能满足需求，需要进行参数调整，需要对处理前后的 fastq 进行比较，以确定合适的参数。通常会用 <code>fastqc</code> 来生成质量报告来进行检查。这时候如果能够直观地观察 reads 中碱基的质量情况就会很有帮助，而 <code>less</code> 看到的是黑白的 phred 质量字符，很难肉眼分辨质量的高低。</p>
 
 <p>为了解决上述不便，我寻找了一些办法，比如 <a href="https://github.com/bioSyntax/bioSyntax">bioSyntax</a>，它提供了 <code>less</code>, <code>vim</code>, <code>sublime</code>, <code>gedit</code> 中的生物信息专属的语法高亮解决方案，并且支持 .sam, .flagstat, .vcf, .fasta, .fastq 等多种文件格式。</p>
@@ -229,7 +235,7 @@
 
 <h2 id="bioview">bioView</h2>
 
-<h3 id="安装">安装</h3>
+<h3 id="section-1">安装</h3>
 
 <p>提供了编译好的可执行二进制文件供下载，无需安装其他依赖，下载压缩包后解压即可使用。下载地址: <a href="https://github.com/Nanguage/bioView/releases">releases</a></p>
 
@@ -237,7 +243,7 @@
 
 <p>考虑到生信分析大多在 Linux 平台进行，目前只提供了 Linux 平台的版本，当然因为是用 <a href="https://nim-lang.org/">Nim 语言</a>编写的，所以是本身是可以跨平台的，如果需要其它操作系统的版本，可以下载源码进行编译，参考<a href="https://github.com/Nanguage/bioView#compile-the-code">这里</a></p>
 
-<h4 id="shell-辅助函数">shell 辅助函数</h4>
+<h4 id="shell-">shell 辅助函数</h4>
 
 <p>另外可以选择添加辅助的 shell 函数，以便使用。虽然只是对原有命令的简单包装，不影响核心功能，但多少能节省点打字时间。只需要将下列文件加到 配置文件(比如对于 bash shell 的 ~/.bashrc) 的最后并修改第一行的文件路径到 bioview 所在的路径即可。现支持 bash 与 fish：</p>
 
@@ -246,9 +252,9 @@
   <li><a href="https://github.com/Nanguage/bioView/blob/master/shell_config/fish_config.fish">fish</a></li>
 </ul>
 
-<h3 id="基本使用">基本使用</h3>
+<h3 id="section-2">基本使用</h3>
 
-<p>目前尽支持最常用的三种文件格式 .fasta .fasta 和 .sam(.bam),对其它格式的支持还有待开发。
+<p>目前尽支持最常用的三种文件格式 .fasta .fasta 和 .sam(.bam),对其它格式的支持还有待开发。<br />
 首先通过 -h 来显示使用说明：</p>
 
 <pre><code>$ bioview -h
@@ -314,7 +320,7 @@ $ fq-less example.fq # 与上述命令等价
 $ zcat example.fq.gz | fq-less - # 等价于 zcat example.fq.gz | bioview fq - | less -rS
 </code></pre>
 
-<p>对 fasta 和 sam 的操作也是类似的，这里不再赘述。
+<p>对 fasta 和 sam 的操作也是类似的，这里不再赘述。<br />
 值得一提的是 sam 可以通过 <code>--multiline=yes</code> 来排版为多行模式，降低信息密度，方便阅读：</p>
 
 <pre><code>$ bioview sam example.sam --multiline=yes | less -rS
@@ -322,13 +328,13 @@ $ zcat example.fq.gz | fq-less - # 等价于 zcat example.fq.gz | bioview fq - |
 
 <p><img src="https://raw.githubusercontent.com/Nanguage/bioView/master/example/imgs/theme_glimpse/verbose/verbose-sam.png" alt="" /></p>
 
-<h3 id="配置文件">配置文件</h3>
+<h3 id="section-3">配置文件</h3>
 
 <p>上面说了，我想要的是一个可以灵活地对配色、排版等进行配置的软件。所以 bioView 加入了配置文件功能，能够对色彩和视觉元素进行相对于命令行参数更细节配置。</p>
 
 <p>默认的配置文件存放目录位于 <code>~/.config/bioview/config.json</code>，也可以通过 <code>--config-file</code> 指定配置文件。</p>
 
-<h4 id="主题">主题</h4>
+<h4 id="section-4">主题</h4>
 
 <p>每种配置可以视为一种风格主题(theme)。</p>
 
@@ -339,7 +345,7 @@ $ zcat example.fq.gz | fq-less - # 等价于 zcat example.fq.gz | bioview fq - |
   <li>emoji: 通过 emoji 来代替柱状图显示测序质量。（也许没什么用，纯属好玩 :P ，btw. 这个创意来自于<a href="https://github.com/lonsbio/fastqe">这里</a>）</li>
 </ul>
 
-<p>我提供了一种一键式的主题切换方案，可以通过一行简单的命令在不同的 theme 之间切换。
+<p>我提供了一种一键式的主题切换方案，可以通过一行简单的命令在不同的 theme 之间切换。<br />
 比如切换到 verbose:</p>
 
 <pre><code>$ mkdir -p ~/.config/bioview/ ; curl -LJ https://raw.githubusercontent.com/Nanguage/bioView/master/theme/verbose.json n -o ~/.config/bioview/config.json
@@ -347,9 +353,9 @@ $ zcat example.fq.gz | fq-less - # 等价于 zcat example.fq.gz | bioview fq - |
 
 <p>其它的主题以及切换代码请参考<a href="https://github.com/Nanguage/bioView/blob/master/theme/README.md">这里</a>。</p>
 
-<h4 id="制作自己的私人配置文件">制作自己的私人配置文件</h4>
+<h4 id="section-5">制作自己的私人配置文件</h4>
 
-<p>由于本人没什么艺术细胞，所以仅仅制作了两种 theme，当然你可以制作你自己的 theme。
+<p>由于本人没什么艺术细胞，所以仅仅制作了两种 theme，当然你可以制作你自己的 theme。<br />
 可以通过，<code>bioview example-config</code> 来生成一个配置文件的模板。然后对其进行编辑</p>
 
 <pre><code>$ mkdir -p ~/.config/bioview/config.json
@@ -366,10 +372,10 @@ $ vim ~/.config/bioview/config.json
 
 <p>而对于 fq, fa, sam 特定格式相关的配置位于相应的字段 fq-config, fa-config, sam-config。可以根据需要对其进行相应的配置。</p>
 
-<h2 id="开发">开发</h2>
+<h2 id="section-6">开发</h2>
 
-<p>目前为止，bioView 虽然已经基本达到上面我所说的几个目标，但是仍然是一个不完整的，有待开发的项目。后续还需要提供对其它生信文件格式的支持，以及对现有功能进行测试与调整。欢迎大家提出意见与建议，可以在 github 上直接提 issue，或者邮件联系我。 
-邮箱：nanguage@yahoo.com 。
+<p>目前为止，bioView 虽然已经基本达到上面我所说的几个目标，但是仍然是一个不完整的，有待开发的项目。后续还需要提供对其它生信文件格式的支持，以及对现有功能进行测试与调整。欢迎大家提出意见与建议，可以在 github 上直接提 issue，或者邮件联系我。 <br />
+邮箱：nanguage@yahoo.com 。<br />
 同时如果你喜欢本项目的话，欢迎来点个 star, 也欢迎 fork, pull request 大家一起进行开发。</p>
 
 				

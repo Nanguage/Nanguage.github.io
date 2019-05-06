@@ -71,6 +71,12 @@
 				<ul>
 					
 					<li>
+						<a href="/examples/pubnet/sample.html" title="PubMed bio-conception network example">
+								<img src="/assets/img/net.png" title="PubMed bio-conception network example" />PubMed bio-conception network example
+						</a>
+					</li>
+					
+					<li>
 						<a href="/examples/hpo_enrich/example_sagd_00055.html" title="HPO enrichment example">
 								<img src="/assets/img/notebook.ico" title="HPO enrichment example" />HPO enrichment example
 						</a>
@@ -183,7 +189,7 @@
 		</div>
 		<div class="post_total">
 			
-				<div class="left">18 object(s)</div>
+				<div class="left">19 object(s)</div>
 			
 			<div class="right">&nbsp;</div>
 		</div>
@@ -201,53 +207,53 @@
 				<li>February 22, 2019</li>
 			</ul>
 			<div class="post_content" style="max-height: 600px">
-        		<p>The KS-Test(Kolmogorov-Smirnov test) is a kind of non-parametric
-(the distribution information of the data is not needed)
-test for determine if two datasets differ significantly.
-The null hypothesis is that the two samples are drawn
+        		<p>The KS-Test(Kolmogorov-Smirnov test) is a kind of non-parametric<br />
+(the distribution information of the data is not needed)<br />
+test for determine if two datasets differ significantly.<br />
+The null hypothesis is that the two samples are drawn<br />
 from the same distribution.</p>
 
-<p>The key idea of KS-Test is to construct a statistic
-(which called D statistic)
-by the cumulative fraction function
-(empirical distribution function) of two datasets.
-According to the definition on the
+<p>The key idea of KS-Test is to construct a statistic<br />
+(which called D statistic)<br />
+by the cumulative fraction function<br />
+(empirical distribution function) of two datasets.<br />
+According to the definition on the<br />
 <a href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test">KS-Test WiKi page</a>:</p>
 
 <p>The CDF(cumulative fraction function) $F_n$:</p>
 
 <script type="math/tex; mode=display">F_n(x) = \frac{1}{n} \sum^{n}_{i=1} I_{[-\infty,x]}(X_i)</script>
 
-<p>Where the $I_{[-\infty,x]}$ is the indicator function, it
-equal to 1 if $X_i \leq x$ else it equal to 0.
+<p>Where the $I_{[-\infty,x]}$ is the indicator function, it<br />
+equal to 1 if $X_i \leq x$ else it equal to 0.<br />
 Then the D statistic:</p>
 
 <script type="math/tex; mode=display">D_{n,m} = \mathop{sup}_{x} | F_{1,n}(x) - F_{2,n}(x) |</script>
 
-<p>Where $F_{1,n}$ and $F_{2,n}$ are the CDF
-of the first and second dataset, and
+<p>Where $F_{1,n}$ and $F_{2,n}$ are the CDF<br />
+of the first and second dataset, and<br />
 $\mathop{sup}_{x}$ is the supremum function.</p>
 
-<p>Intuitively, the D statistic is the max difference value of
+<p>Intuitively, the D statistic is the max difference value of<br />
 two cumulative functions. as shown in following figure:</p>
 
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/KS2_Example.png" alt="" width="40%" height="40%" /></p>
 
-<p>The red line is the CDF of a dataset, the blue line is another one,
-and the black arrow line indicate the max distance between them,
+<p>The red line is the CDF of a dataset, the blue line is another one,<br />
+and the black arrow line indicate the max distance between them,<br />
 that is the statistic D.</p>
 
-<p>Benefit the design of the statistic D, KS-Test is sensitive to 
-differences in both location and shape
-of the CDF of the two samples.
+<p>Benefit the design of the statistic D, KS-Test is sensitive to <br />
+differences in both location and shape<br />
+of the CDF of the two samples.<br />
 We can do some experiments to demonstrate this feature.</p>
 
 <h2 id="experiments">Experiments</h2>
 
 <p>Here, we use the implementation of two sample KS-Test in scipy.</p>
 
-<p>Firstly, we generate two datasets from two
-normal distribution they have same $\mu$ but
+<p>Firstly, we generate two datasets from two<br />
+normal distribution they have same $\mu$ but<br />
 different $\sigma$.</p>
 
 <pre><code class="language-Python">&gt;&gt;&gt; import numpy as np
@@ -276,9 +282,9 @@ Ttest_indResult(statistic=-1.0619794453886573, pvalue=0.2888171520114434)
 Ttest_indResult(statistic=-1.116168623094328, pvalue=0.2649835475758269)
 </code></pre>
 
-<p>The p-value is too high,
-we can not reject the null hypothesis at 0.05 level.
-Two data set are different,
+<p>The p-value is too high,<br />
+we can not reject the null hypothesis at 0.05 level.<br />
+Two data set are different,<br />
 but the t-test cannot see the difference.</p>
 
 <p>But if we do the KS-Test:</p>
@@ -290,9 +296,9 @@ Ks_2sampResult(statistic=0.17499999999999993, pvalue=0.0018698874195532526)
 
 <p>The difference was be shown by the small p-value.</p>
 
-<p>More strictly, repeat the random sampling the
-caluculate the p-value many times.
-See the distribution of p-value get
+<p>More strictly, repeat the random sampling the<br />
+caluculate the p-value many times.<br />
+See the distribution of p-value get<br />
 from the t-test and the KS-Test:</p>
 
 <pre><code class="language-Python">np.random.seed(42)
@@ -321,8 +327,8 @@ plt.ylabel("p-value")
 
 <p><img src="/images/blog/ks_test_2.png" alt="" /></p>
 
-<p>From this we know that the KS-Test is
-a good tool for compare two datasets,
+<p>From this we know that the KS-Test is<br />
+a good tool for compare two datasets,<br />
 when the mean value of them are similar.</p>
 
 				
