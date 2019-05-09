@@ -188,15 +188,15 @@
 				<li>July 30, 2017</li>
 			</ul>
 			<div class="post_content" style="max-height: 600px">
-        		<p>最经经常为在服务器上安装软件所困扰。软件依赖的问题有多麻烦，自然是不用我再<br />
-说了，所以有人为了解决这个问题发明了Docker，它在操作系统的级别上提供虚拟化，<br />
-简单来说就是提供一个“沙盒”或者“容器”，方便将软件与它的依赖打包成一个独立的<br />
-应用。<br />
+        		<p>最经经常为在服务器上安装软件所困扰。软件依赖的问题有多麻烦，自然是不用我再
+说了，所以有人为了解决这个问题发明了Docker，它在操作系统的级别上提供虚拟化，
+简单来说就是提供一个“沙盒”或者“容器”，方便将软件与它的依赖打包成一个独立的
+应用。
 wikipedia上对Docker的定义：</p>
 
 <blockquote>
-  <p>an open-source project that automates the deployment of software <br />
-applications inside containers by providing an additional layer of<br />
+  <p>an open-source project that automates the deployment of software 
+applications inside containers by providing an additional layer of
 abstraction and automation of OS-level virtualization on Linux.</p>
 </blockquote>
 
@@ -204,7 +204,7 @@ abstraction and automation of OS-level virtualization on Linux.</p>
 
 <!-- more -->
 
-<h2 id="section">基本概念</h2>
+<h2 id="基本概念">基本概念</h2>
 <ul>
   <li><strong>Docker镜像(images)</strong>: 用于创建Docker容器的模板，类似于面向对象语言中“类”的概念。</li>
   <li><strong>Docker容器(Container)</strong>: 一个Docker容器的实例，一个独立的应用，类似于面向对象中的“对象”。对容器进行的更改不会影响到镜像。</li>
@@ -217,23 +217,23 @@ abstraction and automation of OS-level virtualization on Linux.</p>
 
 <p><img src="https://docs.docker.com/engine/images/architecture.svg" alt="Docker 架构" /></p>
 
-<h2 id="section-1">安装</h2>
+<h2 id="安装">安装</h2>
 
 <pre><code class="language-bash">wget -qO- https://get.docker.com/ | sh # 下载最新Docker安装包进行安装
 </code></pre>
 
-<p>然后为了能够在不使用root权限下使用docker，<code>sudo usermod -aG docker $(whoami)</code>，将自己添加<br />
-到 docker 用户组之中，然后<code>sudo service docker restart</code>，重新登录后运行<br />
+<p>然后为了能够在不使用root权限下使用docker，<code>sudo usermod -aG docker $(whoami)</code>，将自己添加
+到 docker 用户组之中，然后<code>sudo service docker restart</code>，重新登录后运行
 <code>docker run hello-world</code> 如果返回了带有 Hello from Docker 字样的信息，就说明已经安装完成了。</p>
 
-<h2 id="docker-">运行 docker 容器</h2>
+<h2 id="运行-docker-容器">运行 docker 容器</h2>
 
 <p>安装之后可以尝试一下运行docker容器，</p>
 
 <pre><code class="language-bash">docker run ubuntu:16.04 /bin/echo "Hello World!"
 </code></pre>
 
-<p><code>docker run</code> 命令会新建一个容器，<code>ubuntu:16.04</code>指定了创建容器所采用的镜像，如果本地该镜像不存在，<br />
+<p><code>docker run</code> 命令会新建一个容器，<code>ubuntu:16.04</code>指定了创建容器所采用的镜像，如果本地该镜像不存在，
 docker 就会从公共仓库 docker hub 上下载对应的镜像。而<code>/bin/echo "Hello World"</code>指定了要运行的命令。</p>
 
 <p>除了运行方式，还可以交互式运行，就像开启了一个shell那样。比如：</p>
@@ -241,8 +241,8 @@ docker 就会从公共仓库 docker hub 上下载对应的镜像。而<code>/bin
 <pre><code class="language-bash">docker run -i -t ubuntu:16.04 /bin/bash
 </code></pre>
 
-<p>以 ubuntu 16.04 为镜像建立一个容器，并运行 bash shell，<code>-t</code> 在容器内开启一个终端，<code>-i</code>允许与容器<br />
-进行交互。这时候就建立了一个新的容器并可以通过shell与之进行交互，此时打开另一个终端，<br />
+<p>以 ubuntu 16.04 为镜像建立一个容器，并运行 bash shell，<code>-t</code> 在容器内开启一个终端，<code>-i</code>允许与容器
+进行交互。这时候就建立了一个新的容器并可以通过shell与之进行交互，此时打开另一个终端，
 输入<code>docker ps</code>，可以看到列出了正在运行的 docker 容器的相关信息，比如容器ID、镜像、命令、状态等等。</p>
 
 <pre><code>⋊&gt; ~/T/demo_docker docker ps                                                                                                                                            
@@ -250,9 +250,9 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 d11ec4b0042b        ubuntu:16.04        "/bin/bash"         27 seconds ago      Up 26 seconds                           quirky_brahmagupta
 </code></pre>
 
-<p>然后可以通过<code>docker stop</code>或者是<code>docker kill</code>来关闭这个正在运行的容器。比如，<code>docker kill d11ec4b0042b</code>，<br />
-再运行<code>docker ps</code>就会发现刚才那个 docker 容器已经被关闭了。此外通过<code>-d</code>选项可以使容器在后台运行。<br />
-通过<code>attach</code>命令可以把应用的标准输入、输出切至当前终端。<br />
+<p>然后可以通过<code>docker stop</code>或者是<code>docker kill</code>来关闭这个正在运行的容器。比如，<code>docker kill d11ec4b0042b</code>，
+再运行<code>docker ps</code>就会发现刚才那个 docker 容器已经被关闭了。此外通过<code>-d</code>选项可以使容器在后台运行。
+通过<code>attach</code>命令可以把应用的标准输入、输出切至当前终端。
 比如：</p>
 
 <pre><code class="language-bash">⋊&gt; ~/T/demo_docker docker run -d -it ubuntu:16.04 bash                  
@@ -269,8 +269,8 @@ root@5bad84c67822:/#
 
 <p>如果想从容器中切出(deattach)可以通过 <code>Ctrl+p+Ctrl+q</code> 快捷键。使用<code>docker logs</code>可以查看容器的输出记录。</p>
 
-<h2 id="section-2">容器管理</h2>
-<p><code>docker ps -a</code> 查看所有镜像，包括已经关闭的镜像。如果容器已经不再需要，可以使用<code>docker rm</code>进行删除。<br />
+<h2 id="容器管理">容器管理</h2>
+<p><code>docker ps -a</code> 查看所有镜像，包括已经关闭的镜像。如果容器已经不再需要，可以使用<code>docker rm</code>进行删除。
 其中一个比较实用用法：</p>
 
 <pre><code class="language-bash">docker rm $(docker ps -a -q -f status=exited)
@@ -301,7 +301,7 @@ root@8c7c80016dbf:/#
 
 </code></pre>
 
-<h2 id="section-3">镜像管理</h2>
+<h2 id="镜像管理">镜像管理</h2>
 
 <p>首先，可以通过<code>docker images</code>列出所有镜像:</p>
 
@@ -339,13 +339,13 @@ vimagick/python                mini python                                     3
 ...
 </code></pre>
 
-<h3 id="section-4">创建镜像</h3>
+<h3 id="创建镜像">创建镜像</h3>
 
-<p>如果没有现成的可供使用的镜像或者是要发布自己的应用时，可以创建自己的镜像。<br />
-创建新的镜像可以通过两种方式：1. 对已有的镜像进行修改，并提交修改。2. 使用一个指令序列即 Dockerfile 创建新的镜像。<br />
+<p>如果没有现成的可供使用的镜像或者是要发布自己的应用时，可以创建自己的镜像。
+创建新的镜像可以通过两种方式：1. 对已有的镜像进行修改，并提交修改。2. 使用一个指令序列即 Dockerfile 创建新的镜像。
 这两种方式如果类比到对本地Host的操作，可以理解为通过 shell 对系统进行修改和通过脚本来对系统进行修改。</p>
 
-<h5 id="section-5">更新镜像</h5>
+<h5 id="更新镜像">更新镜像</h5>
 
 <p>首先，来看看第一种方式。比如我们要创建一个带有ipython的容器，可以先运行一个新的ubuntu容器，然后通过一些列命令安装 ipython：</p>
 
@@ -356,7 +356,7 @@ root@b406d40315d3:/# apt-get install ipython
 ...
 </code></pre>
 
-<p>在对容器修改的一系列命令运行完毕之后，通过 <code>Ctrl+D</code> 或者 exit 退出之后，通过 ps 找到容器 ID 后，就可以通过<br />
+<p>在对容器修改的一系列命令运行完毕之后，通过 <code>Ctrl+D</code> 或者 exit 退出之后，通过 ps 找到容器 ID 后，就可以通过
 <code>docker commit</code> 进行修改的提交了。</p>
 
 <pre><code class="language-bash">⋊&gt; ~/T/demo_docker docker commit -m "install ipython" -a "nanguage" b406d40315d3 nanguage/ipython:v1
@@ -373,8 +373,8 @@ nginx               latest              958a7ae9e569        3 weeks ago         
 
 <p>可以看到 nanguage/ipython:v1 镜像已经被创建了。</p>
 
-<h4 id="dockerfile-">Dockerfile 构建镜像</h4>
-<p>这里以 BioContainers Project 的 <a href="https://github.com/BioContainers/containers/blob/master/biocontainers/Dockerfile">base image</a> 为例<br />
+<h4 id="dockerfile-构建镜像">Dockerfile 构建镜像</h4>
+<p>这里以 BioContainers Project 的 <a href="https://github.com/BioContainers/containers/blob/master/biocontainers/Dockerfile">base image</a> 为例
 展示 Dockerfile 的写法。</p>
 
 <pre><code class="language-Dockerfile"># Base image
@@ -484,11 +484,11 @@ CMD ["/bin/bash"]
 WORKDIR /data
 </code></pre>
 
-<p>从上面的 Dockerfile 来看其实挺好理解的，基本就是普通的 bash command 加了一些关键字而已，我们来一条条看上面出现的关键字。<br />
-首先<code>FROM</code>指定了从哪个镜像为基础构建，这里指定的是 ubuntu:16.04。<code>MAINTAINER</code>这里提供的是镜像的维护者相关的信息，<br />
-接着是连续好几行以<code>LABEL</code>作为开头的行，这是一些对于该<br />
-镜像的描述性信息。接着是一系列<code>RUN</code>，这些是用于镜像构建的指令序列，相当于在一个容器内运行这些指令，然后commit。<br />
-<code>ENV</code>提供了一种设置环境变量的方法。<code>USER</code> 命令用于切换用户。<code>VOLUME</code>声明了在容器与 Host 间的共享文件夹。<br />
+<p>从上面的 Dockerfile 来看其实挺好理解的，基本就是普通的 bash command 加了一些关键字而已，我们来一条条看上面出现的关键字。
+首先<code>FROM</code>指定了从哪个镜像为基础构建，这里指定的是 ubuntu:16.04。<code>MAINTAINER</code>这里提供的是镜像的维护者相关的信息，
+接着是连续好几行以<code>LABEL</code>作为开头的行，这是一些对于该
+镜像的描述性信息。接着是一系列<code>RUN</code>，这些是用于镜像构建的指令序列，相当于在一个容器内运行这些指令，然后commit。
+<code>ENV</code>提供了一种设置环境变量的方法。<code>USER</code> 命令用于切换用户。<code>VOLUME</code>声明了在容器与 Host 间的共享文件夹。
 <code>CMD</code>命令指定了<code>docker run</code> 时默认执行的程序。<code>WORKDIR</code>切换 Dockerfile 的工作路径。</p>
 
 <p>有了上面的知识，可以自己写一个小的 Dockerfile ，然后构建一下试试：</p>
@@ -546,30 +546,27 @@ nginx               latest              958a7ae9e569        3 weeks ago         
 root@15805ab06447:/# 
 </code></pre>
 
-<h2 id="section-6">与外部联系</h2>
-<p>Dokcer使我们拥有了沙盒，但这些沙盒要发挥作用就必须具有从外界输入数据和向外界输出数据的能力。<br />
+<h2 id="与外部联系">与外部联系</h2>
+<p>Dokcer使我们拥有了沙盒，但这些沙盒要发挥作用就必须具有从外界输入数据和向外界输出数据的能力。
 下面看看Docker中的相关机制。</p>
 
-<h3 id="section-7">文件传输</h3>
-<p><code>docker cp</code> 在容器与本地文件系统间进行文件拷贝，比如：<br />
-<code>
-⋊&gt; ~/PlayGround docker cp test.txt 1256cea0ee7d:/home # 拷入docker
+<h3 id="文件传输">文件传输</h3>
+<p><code>docker cp</code> 在容器与本地文件系统间进行文件拷贝，比如：</p>
+<pre><code>⋊&gt; ~/PlayGround docker cp test.txt 1256cea0ee7d:/home # 拷入docker
 ⋊&gt; ~/PlayGround docker cp 1256cea0ee7d:/home/test2.txt . # 拷回本地
-</code></p>
+</code></pre>
 
-<h3 id="section-8">端口映射</h3>
-<p>如果我们希望在容器内运行网络应用，就需要把容器内部的网络端口给映射到本地的某一端口上去。<br />
-举一个栗子，比如我们要运行一个flask的demo:<br />
-<code>
-⋊&gt; ~/PlayGround docker run -p 1111:80 p0bailey/docker-flask:latest # 将容器的80端口绑定到本地1111端口上。
-</code><br />
-然后用浏览器访问 <code>127.0.0.1:1111</code>就能看到一个 “Hello Flask!!!” 的页面了。这时用 <code>docker ps</code> 也能看到<br />
-端口映射的情况。<br />
-<code>
-⋊&gt; ~/D/h/blog docker ps                                                        
+<h3 id="端口映射">端口映射</h3>
+<p>如果我们希望在容器内运行网络应用，就需要把容器内部的网络端口给映射到本地的某一端口上去。
+举一个栗子，比如我们要运行一个flask的demo:</p>
+<pre><code>⋊&gt; ~/PlayGround docker run -p 1111:80 p0bailey/docker-flask:latest # 将容器的80端口绑定到本地1111端口上。
+</code></pre>
+<p>然后用浏览器访问 <code>127.0.0.1:1111</code>就能看到一个 “Hello Flask!!!” 的页面了。这时用 <code>docker ps</code> 也能看到
+端口映射的情况。</p>
+<pre><code>⋊&gt; ~/D/h/blog docker ps                                                        
 CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                  NAMES
 841dd3365eaf        p0bailey/docker-flask:latest   "/usr/bin/supervisord"   6 minutes ago       Up 6 minutes        0.0.0.0:1111-&gt;80/tcp   nifty_jepsen
-</code></p>
+</code></pre>
 
 				
 					<br>

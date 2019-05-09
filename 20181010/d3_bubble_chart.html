@@ -188,19 +188,18 @@
 				<li>October 10, 2018</li>
 			</ul>
 			<div class="post_content" style="max-height: 600px">
-        		<p>在展示 GO 富集分析的结果的时候经常会使用 bubble chart，<br />
-因为它的信息量相对来说比较大，bubble 的位置(x, y) ，大小和颜色，<br />
+        		<p>在展示 GO 富集分析的结果的时候经常会使用 bubble chart，
+因为它的信息量相对来说比较大，bubble 的位置(x, y) ，大小和颜色，
 每个属性都可以用来展示数据的某一维度信息。</p>
 
 <!--more-->
 
-<p>比方说，我可以这样建立数据到图形属性的映射关系：<br />
-<code>
-Gene ratio -&gt; x
+<p>比方说，我可以这样建立数据到图形属性的映射关系：</p>
+<pre><code>Gene ratio -&gt; x
 GO item name -&gt; y
 -log2(Pvalue) -&gt; size
 mean log2(FoldChange) -&gt; color
-</code></p>
+</code></pre>
 
 <p>可以通过这四个属性把我想展示的 GO 富集的结果信息都放在一张图上。</p>
 
@@ -524,17 +523,17 @@ var sizeBarLabels = svg.append("g")
         </script>
 </html>
 
-<p>具体的代码放到了这个<br />
+<p>具体的代码放到了这个
 <a href="https://github.com/Nanguage/D3-bubble-chart-example">repo</a> 里面，</p>
 
-<p>D3.js 非常强大的绘图库，可以创建具有强动态效果的交互式<br />
-网页 SVG 图像。<br />
-交互式图像可以说是未来数据绘图的一种趋势，<br />
-而且用这种 html 模板渲染 D3.js 做图表的方式，<br />
-非常适合用来做生信软件或者 pipeline 的报告。<br />
-虽然现在也有一些其他语言的绘图库也可以做这类事情，<br />
-比如 Python 的 Plotly、Bokeh、Pygal 等等，<br />
-但总体来看，这些包还是不如 D3.js 强大、灵活。<br />
+<p>D3.js 非常强大的绘图库，可以创建具有强动态效果的交互式
+网页 SVG 图像。
+交互式图像可以说是未来数据绘图的一种趋势，
+而且用这种 html 模板渲染 D3.js 做图表的方式，
+非常适合用来做生信软件或者 pipeline 的报告。
+虽然现在也有一些其他语言的绘图库也可以做这类事情，
+比如 Python 的 Plotly、Bokeh、Pygal 等等，
+但总体来看，这些包还是不如 D3.js 强大、灵活。
 所以 D3.js 还是非常值得研究一下的。</p>
 
 				
