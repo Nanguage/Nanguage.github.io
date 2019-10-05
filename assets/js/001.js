@@ -80,3 +80,6 @@ function init() {
 }
 
 window.onload = init
+if (window.location.hash.includes("large-window")) {
+	max_btn_click()
+}
