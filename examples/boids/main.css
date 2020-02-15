@@ -1,0 +1,35 @@
+body {
+    padding: 0;
+    margin: auto;
+    width: 800px;
+    display: block;
+}
+
+#view {
+    display: block;
+    position:absolute;
+    left: 0;
+    top: 0;
+    z-index:-1;
+}
+
+#textBox {
+    width: 800px;
+    margin: auto;
+    margin-top: 180px;
+    background-color: rgba(255,255,255,.5);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+#textBox > h1 {
+    font-size: 80px;
+    margin-bottom: 30px;
+}
+
+#footer {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
