@@ -30,6 +30,7 @@ function maximize () {
 
 	// change height
 	cont.style.maxHeight = ""
+	window.location.hash = 'large-window'
 }
 
 function max_btn_click () {
@@ -55,6 +56,8 @@ function minimize () {
 
 	// change height
 	cont.style.maxHeight = "600px"
+	window.location.hash = ''
+
 }
 
 function min_btn_click () {

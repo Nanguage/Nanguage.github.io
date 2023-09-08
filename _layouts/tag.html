@@ -4,8 +4,8 @@ layout: default
 <ul>
 	{% for post in site.tags[page.tag] %}
 		<li>
-			<a href="{{ post.jump | default: post.url | replace: '.html','' | append: '.html' }}" title="{{ post.title }}">
-				<img class="small-icon" src="/assets/img/{{ post.icon | default: 'file.ico' }}" title="{{ post.title }}" />{{ post.title }}
+			<a href="{{ post.jump | default: post.url | replace: '.html','' | append: '.html' }}" title="{{ post.title | append: ' ' | append: post.date }}">
+				<img class="small-icon" src="/assets/img/{{ post.icon | default: 'file.ico' }}" title="{{ post.title | append: ' ' | append: post.date }}" />{{ post.title }}
 			</a>
 		</li>
 	{% endfor %}
