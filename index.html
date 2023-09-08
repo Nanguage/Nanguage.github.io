@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<ul>
+	{% for post in site.posts %}
+	<li>
+	<a href="{{ post.jump | default: post.url | replace: '.html','' | append: '.html' }}" title="{{ post.title }}">
+		<img src="/assets/img/{{ post.icon | default: 'file.ico' }}" title="{{ post.title }}" />{{ post.title }}
+	</a>
+	</li>
+	{% endfor %}
+</ul>

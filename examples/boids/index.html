@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Boids</title>
+</head>
+  <script src="lib/pixi.min.js"></script>
+<body>
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <script type="text/javascript" src="vec.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+  <div id="textBox">
+    <h1>Boids</h1>
+    <p>Boids is an arificial life program used for simulate flock of birds or fishes.
+      Each agent simulates three behaviors:</p>
+    <ul>
+      <li><b>Flock centering:</b> Move toward the center of the flock.</li>
+      <li><b>Collision avoidance:</b> Avoid obstacles, including other Boids.</li>
+      <li><b>Velocity matching:</b> Align velocity (speed and direction) with neighboring Boids.</li>
+    </ul>
+    <p>You can learn more in this <a href="http://greenteapress.com/complexity2/html/thinkcomplexity2011.html#sec98">book</a>.</p>
+  </div>
+  <div id="footer">
+    <p id="message">message</p>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+bioinformatics:
+  name: bioinformatics
+
+others:
+  name: others
+
+notes:
+  name: notes
+
+3d:
+  name: 3d
+
+life:
+  name: 生活
+
+statistics:
+  name: statistics
