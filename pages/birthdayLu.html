@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Lu!</title>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+<style>
+body {
+  min-width: 800px;
+  background: #fda5a5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden
+}
+.container {
+  position:relative;
+}
+
+.holder {
+  position:absolute;
+  width:350px;
+  height:20px;
+  border-radius:100px;
+  background-color: #212F3C;
+  left:-140px;
+  z-index:11;
+  top:10px;
+  
+}
+.holder2 {
+  position:absolute;
+  width:100px;
+  height:130px;
+  background-color: #CACFD2;
+  left:-22px;
+  top:20px;
+}
+.holder:before {
+  content:"";
+  position:absolute;
+  width:200px;
+  height: 20px;
+  border-radius:100px;
+  background-color: #CACFD2;
+  top:139px;
+  left:77px;
+  
+}
+.shadow {
+  position:absolute;
+  width:400px;
+  height:40px;
+  border-radius:50%;
+  top:150px;
+  left:-155px;
+  background-color: rgba(0,0,0,0.095);
+  z-index:-1;
+  
+}
+.holder1 {
+  position:absolute;
+  background-color:#e03d4a;
+  width: 100px;
+  height:119px;
+  border-radius:0 30px 0 0;
+  left:-77px;
+  top:30px;
+  z-index:10;
+  
+}
+.holder1:after {
+  position:absolute;
+  content:"";
+  background-color:#e03d4a;
+  width: 100px;
+  height:120px;
+  border-radius:30px 0 0 0;
+  left:130px;
+  
+}
+
+.cake {
+  position:absolute;
+  overflow:hidden;
+  width:280px;
+  height:140px;
+  background-color: #FAD7A0;
+  top:-130px;
+  left:-102px;
+  border-radius:30px 30px 0 0;
+  
+}
+.cake:after {
+  content:"";
+  background-color: #935116;
+  width:280px;
+  height:15px;
+  position:absolute;
+  top:105px;
+}
+
+.cake:before {
+  content:"";
+  background-color: #935116;
+  width:280px;
+  height:15px;
+  position:absolute;
+  top:75px;
+}
+.top {
+  position:absolute;
+  background-color: #573612  ;
+  width:290px;
+  height:40px;
+  box-shadow:inset -10px 10px 0 rgba(0,0,0,0.07);
+  
+}
+.top:after {
+  content:"";
+  position:absolute; 
+  background-color: #573612;
+  width:25px;
+  height:55px;
+  top:15px;
+  border-radius:50px;
+  
+}
+.top:before {
+  content:"";
+  position:absolute; 
+  background-color: #FAD7A0;
+  width:25px;
+  height:35px;
+  top:25px;
+  left:25px;
+  border-radius:50px;
+}
+.chocolate {
+  position:absolute; 
+  background-color: #573612;
+  width:25px;
+  height:45px;
+  top:15px;
+  left:50px;
+  border-radius:50px;
+}
+.chocolate:after {
+  content:"";
+  position:absolute; 
+  background-color: #FAD7A0;
+  width:25px;
+  height:35px;
+  left:25px;
+  border-radius:50px;
+  
+}
+.chocolate:before {
+  position:absolute; 
+  background-color: #573612;
+  width:25px;
+  height:45px;
+  top:10px;
+  left:50px;
+  border-radius:50px;
+  content:"";
+  
+}
+.chocolate1 {
+  position:absolute; 
+  background-color: #FAD7A0;
+  width:25px;
+  height:35px;
+  left:125px;
+  top:25px;
+  border-radius:50px;
+}
+.chocolate1:after {
+  position:absolute; 
+  background-color: #573612;
+  width:25px;
+  height:45px;
+  top:-5px;
+  left:25px;
+  border-radius:50px;
+  content:"";
+}
+.chocolate1:before {
+  position:absolute; 
+  content:"";
+  background-color: #FAD7A0;
+  width:25px;
+  height:35px;
+  left:50px;
+  top:5px;
+  border-radius:50px;
+  
+}
+.chocolate2 {
+  position:absolute; 
+  background-color: #573612;
+  width:25px;
+  height:35px;
+  left:200px;
+  top:17px;
+  border-radius:50px;
+}
+.chocolate2:after {
+  position:absolute;
+  content:"";
+  background-color: #FAD7A0;
+  border-radius:50px;
+  width:25px;
+  height:35px;
+  left:25px;
+}
+.chocolate2:before {
+  content:"";
+  position:absolute; 
+  background-color: #573612;
+  width:35px;
+  height:35px;
+  left:50px;
+  top:8px;
+  border-radius:50px;
+}
+
+.candle {
+  position:absolute; 
+  width: 15px;
+  height:70px;
+  background-color: white;
+  top:-200px;
+  left:30px;
+  box-shadow:inset 0 -10px 0 #E74C3C;
+}
+.candle:after {
+  position:absolute;
+  width:15px;
+  height:15px;
+  background-color:#E74C3C;
+  content:"";
+  top:35px;
+}
+.candle:before {
+  position:absolute;
+  width:15px;
+  height:15px;
+  background-color:#E74C3C;
+  content:"";
+  top:10px;
+}
+.candle1 {
+  width:2px;
+  height:15px;
+  position:absolute;
+  background-color:black;
+  top:-215px;
+  left:36px;
+}
+
+#c1 {
+  left:-30px;
+}
+#cl1 {
+  left:-24px;
+}
+#f1 {
+  left:-33px;
+}
+#c2 {
+  left:0px;
+}
+#cl2 {
+  left:6px;
+}
+#f2 {
+  left:-3px;
+}
+#c3 {
+  left:30px;
+}
+#cl3 {
+  left:36px;
+}
+#f3 {
+  left:27px;
+}
+#c4 {
+  left:60px;
+}
+#cl4 {
+  left:65px;
+}
+#f4 {
+  left:57px;
+}
+#c5 {
+  left:90px;
+}
+#cl5 {
+  left:96px;
+}
+#f5 {
+  left:87px;
+}
+
+.flame {
+  position:absolute;
+  background-color: #F4D03F;
+  opacity:0.9;
+  box-shadow:inset 0 -5px 5px #D35400, 5px -5px 20px #FBFFA3;
+  width:20px;
+  height:30px;
+  top:-240px;
+  border-radius:50%;
+  left:25.5px;
+  animation: flame 0.5s infinite;
+    
+}
+
+@keyframes flame {
+  from, to { transform: scale(1, 1); }
+  25% { transform: scale(0.9, 1.1); }
+  50% { transform: scale(1.1, 0.9); }
+  75% { transform: scale(0.95, 1.05); }
+}
+
+
+.heart {
+    position: absolute;
+    top: -50%;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -m-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    z-index: -100;
+ }
+
+.heart:before {
+    position: absolute;
+    top: -50%;
+    left: 0;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: 100%;
+}
+
+.heart:after {
+    position: absolute;
+    top: 0;
+    right: -50%;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: 100%;
+}
+
+@-webkit-keyframes love {
+  0%{top:110%}
+}
+@-moz-keyframes love {
+  0%{top:110%}
+}
+@-ms-keyframes love {
+  0%{top:110%}
+}
+@keyframes love {
+  0%{top:110%}
+}
+
+
+.words {
+    position: absolute;
+    top: 180px;
+    left: -200px;
+    width: 800px;
+    font-family: Brush Script MT,cursive;
+    font-size: 40px;
+    color: rgb(75, 71, 67);
+    padding: 10px;
+}
+.words2 {
+    position: absolute;
+    top: 270px;
+    left: 200px;
+    width: 200px;
+    font-size: 20px;
+    font-family: Brush Script MT,cursive;
+    color: rgb(75, 71, 67);
+}
+
+
+
+</style>
+
+</head>
+<body>
+
+  <div class="bg_heart">
+
+    <div class="container">
+      <div class="bdaycake">
+        <div class="holder"></div>
+        <div class="holder2"></div>
+        <div class="holder1"></div>
+        <div class="shadow"></div>
+        <div class="cake">
+          <div class="top"></div>
+          <div class="chocolate"></div>
+          <div class="chocolate1"></div>
+          <div class="chocolate2"></div>
+        </div>
+
+        <div class="candle"  id="c1"></div>
+        <div class="candle1" id="cl1"></div>
+        <div class="candle"  id="c2"></div>
+        <div class="candle1" id="cl2"></div>
+        <div class="candle"  id="c3"></div>
+        <div class="candle1" id="cl3"></div>
+        <div class="candle"  id="c4"></div>
+        <div class="candle1" id="cl4"></div>
+        <div class="candle"  id="c5"></div>
+        <div class="candle1" id="cl5"></div>
+
+        <div class="flame"   id="f1"></div>
+        <div class="flame"   id="f2"></div>
+        <div class="flame"   id="f3"></div>
+        <div class="flame"   id="f4"></div>
+        <div class="flame"   id="f5"></div>
+
+        <h1 class="words">Happy 25th Birthday, Lu!</h1>
+        <h1 class="words2">By your Ze</h1>
+      </div>
+
+    </div>
+    <audio autoplay>
+      <source src="/audios/hb8-remix.mp3" type="audio/mpeg">
+    </audio>
+
+  </div>
+    
+<script>
+
+var love = setInterval(function() {
+    var r_num = Math.floor(Math.random() * 30) + 1;
+    var r_size = Math.floor(Math.random() * 65) + 10;
+    var r_left = Math.floor(Math.random() * 690) + 1;
+    var r_bg = Math.floor(Math.random() * 25) + 100;
+    var r_time = Math.floor(Math.random() * 50) + 15;
+
+    $('body').append("<div class='heart' style='width:" + r_size + "px;height:" + r_size + "px;left:" + r_left + "%;background:rgba(255," + (r_bg - 25) + "," + r_bg + ",1);-webkit-animation:love " + r_time + "s ease;-moz-animation:love " + r_time + "s ease;-ms-animation:love " + r_time + "s ease;animation:love " + r_time + "s ease'></div>");
+
+    $('body').append("<div class='heart' style='width:" + (r_size - 10) + "px;height:" + (r_size - 10) + "px;left:" + (r_left + r_num) + "%;background:rgba(255," + (r_bg - 25) + "," + (r_bg + 25) + ",1);-webkit-animation:love " + (r_time + 5) + "s ease;-moz-animation:love " + (r_time + 5) + "s ease;-ms-animation:love " + (r_time + 5) + "s ease;animation:love " + (r_time + 5) + "s ease'></div>");
+
+    $('.heart').each(function() {
+        var top = $(this).css("top").replace(/[^-\d\.]/g, '');
+        var width = $(this).css("width").replace(/[^-\d\.]/g, '');
+        if (top <= -100 || width >= 150) {
+            $(this).detach();
+        }
+    });
+}, 500);
+
+</script>
+</body>
+</html>

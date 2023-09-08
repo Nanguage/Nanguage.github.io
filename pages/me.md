@@ -5,17 +5,18 @@ title: me
 
 Hi,
 
-I'm a Chinese graduate student, focusing on bioinformatics.
+I'm a PhD student, focusing on bioinformatics.
 
 ## Accounts
 
-- [Twitter](https://twitter.com/Nanguage)
 - [Github](https://github.com/Nanguage)
+- [Twitter](https://twitter.com/Nanguage)
+- 微信公众号: BaseOverflow
 
 ## Contact
 
+- E-mail: compbio.xwz@foxmail.com
 - Telegram: @fliptower
-- E-mail: nanguage@yahoo.com
 
 ## Donate
 
