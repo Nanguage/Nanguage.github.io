@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../data/projects';
+---
+
+<Base title="Projects" description="Open-source software and research tools I build and maintain.">
+  <div class="page">
+    <h1 class="page-title">Projects</h1>
+    <p class="page-subtitle">Open-source software and research tools I build and maintain.</p>
+    <div class="cards">
+      {projects.map((p) => <ProjectCard project={p} />)}
+    </div>
+  </div>
+</Base>

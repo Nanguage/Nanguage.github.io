@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base title="About">
+  <div class="page">
+    <h1 class="page-title">About</h1>
+    <div class="prose">
+      <p>
+        I am a PhD student in bioinformatics at Stanford University. I work on spatial
+        transcriptomics, microscopy image analysis, and open-source software for
+        working with large biological datasets. Before Stanford I worked on genomic
+        data visualization and Hi-C analysis.
+      </p>
+      <p>Outside research I build small web tools and data visualizations.</p>
+
+      <h2>Research interests</h2>
+      <ul>
+        <li>Spatial transcriptomics and microscopy image analysis</li>
+        <li>Agents and automation for data-science workflows</li>
+        <li>Reproducible, usable scientific software</li>
+      </ul>
+
+      <h2>Contact</h2>
+      <ul>
+        <li><strong>Email</strong> — <a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li><strong>GitHub</strong> — <a href={`https://github.com/${site.github}`}>@{site.github}</a></li>
+        <li><strong>Twitter / X</strong> — <a href={`https://twitter.com/${site.twitter}`}>@{site.twitter}</a></li>
+        <li><strong>WeChat 公众号</strong> — BaseOverflow</li>
+      </ul>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,13 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container">
+    <span>© {year} {site.name}</span>
+    <span>
+      Built with <a href="https://astro.build">Astro</a> ·
+      <a href={`https://github.com/${site.repo}`}>Source</a>
+    </span>
+  </div>
+</footer>

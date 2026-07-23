@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { year } from '../../utils/date';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const tags = [...new Set(posts.flatMap((p) => p.data.tags))];
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: posts
+        .filter((p) => p.data.tags.includes(tag))
+        .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<Base title={`#${tag}`}>
+  <div class="page">
+    <h1 class="page-title">#{tag.replace(/-/g, ' ')}</h1>
+    <p class="page-subtitle">{posts.length} posts</p>
+    <ul class="post-list">
+      {
+        posts.map((post) => {
+          const href = post.data.jump ?? `/blog/${post.id}/`;
+          return (
+            <li class="entry">
+              <time>{year(post.data.pubDate)}</time>
+              <span class="entry__title">
+                <a
+                  href={href}
+                  target={post.data.jump ? '_blank' : undefined}
+                  rel={post.data.jump ? 'noopener' : undefined}
+                >
+                  {post.data.title}
+                </a>
+                {post.data.jump && <span class="ext-arrow"> ↗</span>}
+              </span>
+            </li>
+          );
+        })
+      }
+    </ul>
+    <a class="back-link" href="/blog/">← All posts</a>
+  </div>
+</Base>

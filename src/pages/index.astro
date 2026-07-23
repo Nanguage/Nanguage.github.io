@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import Social from '../components/Social.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { site } from '../data/site';
+import { projects } from '../data/projects';
+import { news } from '../data/news';
+import { getCollection } from 'astro:content';
+
+const featured = projects.filter((p) => p.featured);
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+const recent = posts.slice(0, 6);
+---
+
+<Base>
+  <section class="profile">
+    <img class="profile__photo" src={site.photo} alt={site.name} width="150" height="150" />
+    <div class="profile__body">
+      <h1 class="profile__name">{site.name}</h1>
+      <p class="profile__role">{site.role}</p>
+      <p class="profile__affil">
+        {site.affiliationUrl ? <a href={site.affiliationUrl}>{site.affiliation}</a> : site.affiliation}
+        {site.location && ` · ${site.location}`}
+      </p>
+      <Social />
+    </div>
+  </section>
+
+  <div class="bio prose">
+    <!-- Edit this bio freely. -->
+    <p>
+      I am a PhD student in bioinformatics at <a href="https://www.stanford.edu/">Stanford University</a>.
+      I work on spatial transcriptomics, microscopy image analysis, and software that helps biologists
+      handle large datasets. Most of what I build is open source.
+    </p>
+    <p>
+      Right now I am building <a href="https://github.com/aristoteleo/PantheonOS">PantheonOS</a>, an agent
+      framework for data-science workflows. Earlier I wrote <a href="https://github.com/GangCaoLab/CoolBox"
+        >CoolBox</a
+      > for genomic visualization and <a href="https://github.com/UFISH-Team/U-FISH">U-FISH</a> for detecting
+      spots in FISH images.
+    </p>
+  </div>
+
+  {
+    news.length > 0 && (
+      <section class="section">
+        <div class="section__head">
+          <h2>News</h2>
+        </div>
+        <ul class="news">
+          {news.slice(0, 5).map((n) => (
+            <li>
+              <time>{n.date}</time>
+              <div class="news__body">
+                <p set:html={n.html} />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <section class="section">
+    <div class="section__head">
+      <h2>Selected Projects</h2>
+      <a class="section__more" href="/projects/">All projects →</a>
+    </div>
+    <div class="cards">
+      {featured.map((p) => <ProjectCard project={p} />)}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__head">
+      <h2>Recent Writing</h2>
+      <a class="section__more" href="/blog/">All posts →</a>
+    </div>
+    <ul class="post-list">
+      {
+        recent.map((post) => {
+          const href = post.data.jump ?? `/blog/${post.id}/`;
+          return (
+            <li class="entry">
+              <time>{post.data.pubDate.getFullYear()}</time>
+              <span class="entry__title">
+                <a
+                  href={href}
+                  target={post.data.jump ? '_blank' : undefined}
+                  rel={post.data.jump ? 'noopener' : undefined}
+                >
+                  {post.data.title}
+                </a>
+                {post.data.jump && <span class="ext-arrow"> ↗</span>}
+              </span>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </section>
+</Base>

@@ -1,0 +1,61 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { fmtShort, year } from '../../utils/date';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+
+type Group = { year: number; items: typeof posts };
+const groups: Group[] = [];
+for (const post of posts) {
+  const y = year(post.data.pubDate);
+  let g = groups.find((x) => x.year === y);
+  if (!g) {
+    g = { year: y, items: [] };
+    groups.push(g);
+  }
+  g.items.push(post);
+}
+---
+
+<Base title="Blog" description="Notes on bioinformatics, tools, and things I build.">
+  <div class="page">
+    <h1 class="page-title">Blog</h1>
+    <p class="page-subtitle">Notes on bioinformatics, tools, and things I build. · {posts.length} posts</p>
+
+    {
+      groups.map((g) => (
+        <div class="year-group">
+          <h2>{g.year}</h2>
+          <ul class="post-list">
+            {g.items.map((post) => {
+              const href = post.data.jump ?? `/blog/${post.id}/`;
+              return (
+                <li class="entry">
+                  <time>{fmtShort(post.data.pubDate)}</time>
+                  <span class="entry__title">
+                    <a
+                      href={href}
+                      target={post.data.jump ? '_blank' : undefined}
+                      rel={post.data.jump ? 'noopener' : undefined}
+                    >
+                      {post.data.title}
+                    </a>
+                    {post.data.jump && <span class="ext-arrow"> ↗</span>}
+                    {post.data.tags.map((t) => (
+                      <a class="tag-chip" href={`/tags/${t}/`}>
+                        {t.replace(/-/g, ' ')}
+                      </a>
+                    ))}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</Base>
