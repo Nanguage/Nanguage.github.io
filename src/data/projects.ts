@@ -1,23 +1,39 @@
 export type Project = {
   name: string;
-  url: string;
+  url: string; // primary link (website if there is one, else repo)
   desc: string;
+  tagline?: string; // short line shown on highlighted cards
   lang?: string;
   color?: string;
   stars?: number;
-  featured?: boolean;
+  repo?: string; // GitHub link, when `url` points to a website
+  image?: string; // thumbnail for highlighted cards
+  highlight?: boolean; // large featured card with image
+  featured?: boolean; // shown on the homepage
 };
 
-// Descriptions auto-drafted from GitHub — verify/tweak the wording.
-// Homepage shows every entry with `featured: true`.
+// Homepage shows `highlight` projects as large cards + other `featured` ones as compact cards.
 export const projects: Project[] = [
   {
     name: 'PantheonOS',
-    url: 'https://github.com/aristoteleo/PantheonOS',
-    desc: 'An evolvable, distributed agent framework and harness for data science.',
+    url: 'https://pantheonos.stanford.edu/',
+    tagline: 'The AgentOS that redefines data science',
+    desc: 'An evolvable, distributed multi-agent framework and harness for automatic scientific discovery.',
+    repo: 'https://github.com/aristoteleo/PantheonOS',
+    image: '/projects/pantheonos.jpg',
     lang: 'Python',
     color: '#3572A5',
     stars: 473,
+    highlight: true,
+    featured: true,
+  },
+  {
+    name: 'Virtual Embryo',
+    url: 'https://virtualembryo.ai/',
+    tagline: 'Developmental biology in the era of AI',
+    desc: 'An interactive AI atlas of mouse embryogenesis — 3D reconstructions, histology, and gene expression across 28 stages, with a spatiotemporal morphogenesis predictor and open REST / MCP endpoints.',
+    image: '/projects/virtualembryo.jpg',
+    highlight: true,
     featured: true,
   },
   {
@@ -30,21 +46,21 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    name: 'AniNet',
-    url: 'https://github.com/AniNet-Project/AniNet',
-    desc: 'Interactive character-relationship network visualization for anime, manga, and games.',
-    lang: 'TypeScript',
-    color: '#3178c6',
-    stars: 91,
-    featured: true,
-  },
-  {
     name: 'U-FISH',
     url: 'https://github.com/UFISH-Team/U-FISH',
     desc: 'Deep-learning based spot detection for FISH microscopy images.',
     lang: 'Python',
     color: '#3572A5',
     stars: 34,
+    featured: true,
+  },
+  {
+    name: 'AniNet',
+    url: 'https://github.com/AniNet-Project/AniNet',
+    desc: 'Interactive character-relationship network visualization for anime, manga, and games.',
+    lang: 'TypeScript',
+    color: '#3178c6',
+    stars: 91,
     featured: true,
   },
   {
@@ -63,12 +79,11 @@ export const projects: Project[] = [
     lang: 'Python',
     color: '#3572A5',
     stars: 10,
-    featured: true,
   },
   {
     name: 'U-Probe',
     url: 'https://github.com/UFISH-Team/U-Probe',
-    desc: 'Universal and agentic probe design tool.',
+    desc: 'Universal and agentic probe design tool for imaging-based spatial omics.',
     lang: 'Python',
     color: '#3572A5',
     stars: 4,

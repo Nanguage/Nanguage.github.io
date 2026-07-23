@@ -1,0 +1,23 @@
+---
+import type { Project } from '../data/projects';
+const { project } = Astro.props as { project: Project };
+---
+<article class="feature">
+  {project.image && (
+    <a class="feature__imgwrap" href={project.url} target="_blank" rel="noopener">
+      <img class="feature__img" src={project.image} alt={`${project.name} website`} loading="lazy" />
+    </a>
+  )}
+  <div class="feature__body">
+    <h3 class="feature__title">
+      <a href={project.url} target="_blank" rel="noopener">{project.name}</a>
+    </h3>
+    {project.tagline && <p class="feature__tag">{project.tagline}</p>}
+    <p class="feature__desc">{project.desc}</p>
+    <div class="feature__links">
+      <a href={project.url} target="_blank" rel="noopener">Website ↗</a>
+      {project.repo && <a href={project.repo} target="_blank" rel="noopener">GitHub ↗</a>}
+      {project.stars && <span class="feature__stars">★ {project.stars}</span>}
+    </div>
+  </div>
+</article>

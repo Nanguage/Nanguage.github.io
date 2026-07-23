@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Social from '../components/Social.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import FeatureCard from '../components/FeatureCard.astro';
 import PubItem from '../components/PubItem.astro';
 import { site } from '../data/site';
 import { projects } from '../data/projects';
@@ -10,7 +11,8 @@ import { publications } from '../data/publications';
 import { photos } from '../data/photos';
 import { getCollection } from 'astro:content';
 
-const featured = projects.filter((p) => p.featured);
+const highlights = projects.filter((p) => p.highlight);
+const featuredCompact = projects.filter((p) => p.featured && !p.highlight);
 // Homepage order: papers where I'm a lead author first (by year),
 // then reviews / co-authored highlights below.
 const isPrimary = (p: (typeof publications)[number]) => p.first || p.coFirst || p.corresponding;
@@ -76,8 +78,11 @@ const lifePhotos = photos.slice(0, 3);
       <a class="more" href="/projects/">All →</a>
     </div>
     <div class="sec__body">
-      <div class="cards">
-        {featured.map((p) => <ProjectCard project={p} />)}
+      <div class="features">
+        {highlights.map((p) => <FeatureCard project={p} />)}
+      </div>
+      <div class="cards" style="margin-top: 16px;">
+        {featuredCompact.map((p) => <ProjectCard project={p} />)}
       </div>
     </div>
   </section>

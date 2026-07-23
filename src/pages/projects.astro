@@ -1,15 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import FeatureCard from '../components/FeatureCard.astro';
 import { projects } from '../data/projects';
+
+const highlights = projects.filter((p) => p.highlight);
+const rest = projects.filter((p) => !p.highlight);
 ---
 
 <Base title="Projects" description="Open-source software and research tools I build and maintain.">
   <div class="page">
     <h1 class="page-title">Projects</h1>
     <p class="page-subtitle">Open-source software and research tools I build and maintain.</p>
-    <div class="cards">
-      {projects.map((p) => <ProjectCard project={p} />)}
+    <div class="features">
+      {highlights.map((p) => <FeatureCard project={p} />)}
+    </div>
+    <div class="cards" style="margin-top: 18px;">
+      {rest.map((p) => <ProjectCard project={p} />)}
     </div>
   </div>
 </Base>

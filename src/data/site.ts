@@ -11,6 +11,7 @@ export const site = {
   email: 'wzxu@stanford.edu',
   github: 'Nanguage',
   twitter: 'Nanguage',
+  linkedin: 'https://www.linkedin.com/in/weize-xu-931547138/',
   scholar: 'https://scholar.google.com/citations?user=rHdkQ-cAAAAJ&hl=en',
   // Fill in from your Google Scholar profile (or leave null to hide the numbers):
   scholarMetrics: null as { citations: number; hIndex: number } | null,

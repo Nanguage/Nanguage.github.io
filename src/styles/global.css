@@ -179,6 +179,40 @@ h3 { font-size: 1.16rem; margin: 1.7em 0 .4em; }
 .card__meta .stars { display: inline-flex; align-items: center; gap: 4px; }
 .card__meta svg { width: 13px; height: 13px; fill: currentColor; }
 
+/* ---- highlighted project cards (with thumbnail) ---- */
+.features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.feature {
+  display: flex; flex-direction: column; overflow: hidden;
+  border: 1px solid var(--border); border-radius: 14px; background: var(--surface);
+  transition: border-color .16s ease;
+}
+.feature:hover { border-color: var(--faint); }
+.feature__imgwrap { display: block; line-height: 0; }
+.feature__img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: #0e0e12; display: block; }
+.feature__body { padding: 15px 17px 17px; }
+.feature__title { font-family: var(--font-display); font-size: 1.22rem; font-weight: 580; margin: 0; }
+.feature__title a { color: var(--ink); }
+.feature__title a:hover { color: var(--accent); text-decoration: none; }
+.feature__tag { color: var(--accent); font-size: .84rem; margin: 3px 0 0; }
+.feature__desc { color: var(--muted); font-size: .92rem; margin: .55em 0 0; }
+.feature__links { display: flex; align-items: center; gap: 16px; margin-top: 13px; font-size: .85rem; }
+.feature__links a { color: var(--muted); }
+.feature__links a:hover { color: var(--accent); text-decoration: none; }
+.feature__stars { color: var(--faint); font-variant-numeric: tabular-nums; }
+@media (max-width: 720px) { .features { grid-template-columns: 1fr; } }
+
+/* ---- gallery lightbox ---- */
+.gallery__btn { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.lightbox { border: 0; padding: 0; margin: auto; background: transparent; max-width: 94vw; max-height: 94vh; overflow: visible; }
+.lightbox::backdrop { background: rgba(0, 0, 0, .84); }
+.lightbox__img { max-width: 94vw; max-height: 84vh; object-fit: contain; border-radius: 10px; display: block; margin: 0 auto; }
+.lightbox__caption { color: #f2f2f2; text-align: center; margin: 12px 0 0; font-size: .92rem; }
+.lightbox__close {
+  position: fixed; top: 16px; right: 22px; width: 40px; height: 40px;
+  background: none; border: 0; color: #fff; font-size: 2rem; line-height: 1; cursor: pointer; opacity: .85;
+}
+.lightbox__close:hover { opacity: 1; }
+
 /* ---- news ---- */
 .news { list-style: none; padding: 0; margin: 0; }
 .news li { display: flex; gap: 16px; padding: 10px 0; border-bottom: 1px dashed var(--border); }
