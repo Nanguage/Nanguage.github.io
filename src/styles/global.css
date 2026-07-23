@@ -20,8 +20,8 @@
   --border:      #e7e3dd;
   --shadow:      0 1px 2px rgba(0,0,0,.04), 0 6px 22px rgba(0,0,0,.05);
 
-  --maxw: 780px;
-  --label-col: 128px;
+  --maxw: 1040px;
+  --label-col: 150px;
 }
 
 :root[data-theme="dark"] {
@@ -232,6 +232,9 @@ h3 { font-size: 1.16rem; margin: 1.7em 0 .4em; }
 .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; display: block; background: var(--surface); }
 .gallery figcaption { font-size: .8rem; color: var(--faint); margin-top: 6px; }
 @media (max-width: 620px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+
+/* long-form reading pages stay a comfortable measure inside the wider shell */
+.reading { max-width: 730px; margin: 0 auto; }
 
 /* ---- generic page ---- */
 .page { padding: 46px 0 30px; }
