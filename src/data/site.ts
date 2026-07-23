@@ -15,7 +15,7 @@ export const site = {
   // Fill in from your Google Scholar profile (or leave null to hide the numbers):
   scholarMetrics: null as { citations: number; hIndex: number } | null,
   orcid: '', // e.g. '0000-0000-0000-0000'
-  photo: '/assets/img/avatar.svg', // replace with a real photo, e.g. /assets/img/avatar.jpg
+  photo: '/assets/img/avatar.jpg',
   repo: 'Nanguage/Nanguage.github.io',
   analyticsId: 'G-ETFXPV2DFP',
 };
