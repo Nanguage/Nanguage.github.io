@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import { photos } from '../data/photos';
+---
+
+<Base title="Life" description="Beyond research — hiking, fishing, and traveling.">
+  <div class="page">
+    <h1 class="page-title">Life</h1>
+    <p class="page-subtitle">Beyond research.</p>
+    <div class="prose" style="margin-bottom: 28px; max-width: 60ch;">
+      <p>
+        When I'm not at a screen I'm usually outdoors — hiking, fishing, or traveling somewhere new.
+        A few photos from along the way.
+      </p>
+    </div>
+    <div class="gallery">
+      {
+        photos.map((ph) => (
+          <figure>
+            <img src={ph.src} alt={ph.alt ?? ph.caption ?? ''} loading="lazy" />
+            {ph.caption && <figcaption>{ph.caption}</figcaption>}
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</Base>

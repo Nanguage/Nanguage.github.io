@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import PubItem from '../components/PubItem.astro';
+import { site } from '../data/site';
+import { publications } from '../data/publications';
+
+type Group = { year: number; items: typeof publications };
+const groups: Group[] = [];
+const sorted = [...publications].sort((a, b) => b.year - a.year);
+for (const p of sorted) {
+  let g = groups.find((x) => x.year === p.year);
+  if (!g) {
+    g = { year: p.year, items: [] };
+    groups.push(g);
+  }
+  g.items.push(p);
+}
+---
+
+<Base title="Publications" description="Peer-reviewed papers and preprints by Weize Xu.">
+  <div class="page" style="padding-bottom: 8px;">
+    <h1 class="page-title">Publications</h1>
+    <p class="page-subtitle">
+      {publications.length} papers{
+        site.scholarMetrics &&
+          ` · ${site.scholarMetrics.citations} citations · h-index ${site.scholarMetrics.hIndex}`
+      } · <a href={site.scholar} target="_blank" rel="noopener">Google Scholar</a>
+    </p>
+  </div>
+
+  {
+    groups.map((g) => (
+      <section class="sec">
+        <div class="sec__label year">{g.year}</div>
+        <div class="sec__body">
+          <div class="pub-list">
+            {g.items.map((p) => (
+              <PubItem pub={p} />
+            ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+</Base>

@@ -1,18 +1,19 @@
 export const site = {
   name: 'Weize Xu',
   title: 'Weize Xu',
-  tagline: 'PhD Student · Bioinformatics',
+  tagline: 'Postdoc · Computational Biology',
   description:
-    'Weize Xu — PhD student in bioinformatics at Stanford. Spatial transcriptomics, microscopy image analysis, and open-source tools for data science.',
-  role: 'PhD Student, Bioinformatics',
-  affiliation: 'Stanford University',
-  affiliationUrl: 'https://www.stanford.edu/',
-  location: 'Palo Alto, CA',
+    'Weize Xu — postdoctoral scholar in the Qiu Lab, Department of Genetics, Stanford. Spatial omics, microscopy image analysis, and open-source tools & agents for data science.',
+  role: 'Postdoctoral Scholar, Computational Biology',
+  affiliation: 'Qiu Lab · Stanford Genetics',
+  affiliationUrl: 'https://genetics.stanford.edu/',
+  location: 'Stanford, CA',
   email: 'wzxu@stanford.edu',
   github: 'Nanguage',
   twitter: 'Nanguage',
-  // Fill these in to show the icons:
-  scholar: '', // e.g. 'https://scholar.google.com/citations?user=XXXXXXXX'
+  scholar: 'https://scholar.google.com/citations?user=rHdkQ-cAAAAJ&hl=en',
+  // Fill in from your Google Scholar profile (or leave null to hide the numbers):
+  scholarMetrics: null as { citations: number; hIndex: number } | null,
   orcid: '', // e.g. '0000-0000-0000-0000'
   photo: '/assets/img/avatar.svg', // replace with a real photo, e.g. /assets/img/avatar.jpg
   repo: 'Nanguage/Nanguage.github.io',

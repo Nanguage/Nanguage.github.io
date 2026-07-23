@@ -96,11 +96,4 @@ export const projects: Project[] = [
     lang: 'TypeScript',
     color: '#3178c6',
   },
-  {
-    name: 'chain-thought',
-    url: 'https://github.com/Nanguage/chain-thought',
-    desc: 'A small web experiment for visualizing chain-of-thought style reasoning.',
-    lang: 'JavaScript',
-    color: '#f1e05a',
-  },
 ];

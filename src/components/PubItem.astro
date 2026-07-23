@@ -1,0 +1,48 @@
+---
+import type { Publication } from '../data/publications';
+import { ME } from '../data/publications';
+
+const { pub } = Astro.props as { pub: Publication };
+
+// Most papers list every author; truncate only the very long consortium lists.
+let shown = pub.authors;
+let etal = false;
+if (pub.authors.length > 14) {
+  shown = pub.authors.slice(0, 12);
+  etal = true;
+}
+
+const role = pub.first
+  ? 'First author'
+  : pub.coFirst
+    ? 'Co-first author'
+    : pub.corresponding
+      ? 'Corresponding author'
+      : null;
+---
+<div class="pub">
+  <div class="pub__title">
+    {pub.url ? <a href={pub.url} target="_blank" rel="noopener">{pub.title}</a> : pub.title}
+  </div>
+  <div class="pub__authors">
+    {
+      shown.map((a, i) => (
+        <>
+          {i > 0 ? ', ' : ''}
+          <span class:list={[{ me: a === ME }]}>{a}</span>
+        </>
+      ))
+    }{etal ? ', et al.' : ''}
+  </div>
+  <div class="pub__meta">
+    {role && (
+      <>
+        <span class="pub__first">{role}</span>
+        <span class="pub__dot">·</span>
+      </>
+    )}
+    {pub.venue && <span class="pub__venue">{pub.venue}</span>}
+    {pub.venue && <span class="pub__dot">·</span>}
+    <span class="pub__year">{pub.year}</span>
+  </div>
+</div>

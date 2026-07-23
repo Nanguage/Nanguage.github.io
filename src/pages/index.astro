@@ -2,104 +2,153 @@
 import Base from '../layouts/Base.astro';
 import Social from '../components/Social.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import PubItem from '../components/PubItem.astro';
 import { site } from '../data/site';
 import { projects } from '../data/projects';
 import { news } from '../data/news';
+import { publications } from '../data/publications';
+import { photos } from '../data/photos';
 import { getCollection } from 'astro:content';
 
 const featured = projects.filter((p) => p.featured);
+// Homepage order: papers where I'm a lead author first (by year),
+// then reviews / co-authored highlights below.
+const isPrimary = (p: (typeof publications)[number]) => p.first || p.coFirst || p.corresponding;
+const _selected = publications.filter((p) => p.selected);
+const selectedPubs = [
+  ..._selected.filter(isPrimary).sort((a, b) => b.year - a.year),
+  ..._selected.filter((p) => !isPrimary(p)).sort((a, b) => b.year - a.year),
+];
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
-const recent = posts.slice(0, 6);
+const recent = posts.slice(0, 5);
+const lifePhotos = photos.slice(0, 3);
 ---
 
 <Base>
-  <section class="profile">
-    <img class="profile__photo" src={site.photo} alt={site.name} width="150" height="150" />
-    <div class="profile__body">
-      <h1 class="profile__name">{site.name}</h1>
-      <p class="profile__role">{site.role}</p>
-      <p class="profile__affil">
-        {site.affiliationUrl ? <a href={site.affiliationUrl}>{site.affiliation}</a> : site.affiliation}
-        {site.location && ` · ${site.location}`}
-      </p>
-      <Social />
+  <header class="masthead">
+    <div class="masthead__inner">
+      <img class="masthead__photo" src={site.photo} alt={site.name} width="132" height="132" />
+      <div class="masthead__body">
+        <h1 class="masthead__name">{site.name}</h1>
+        <p class="masthead__role">{site.role}</p>
+        <p class="masthead__affil">
+          <a href={site.affiliationUrl}>{site.affiliation}</a>{site.location && ` · ${site.location}`}
+        </p>
+        <div class="masthead__meta">
+          <Social />
+          <span class="metrics">
+            <a href={site.scholar} target="_blank" rel="noopener">Google Scholar</a>{
+              site.scholarMetrics &&
+                ` · ${site.scholarMetrics.citations} citations · h-index ${site.scholarMetrics.hIndex}`
+            }
+          </span>
+        </div>
+      </div>
     </div>
-  </section>
+    <hr class="masthead__rule" />
+  </header>
 
-  <div class="bio prose">
-    <!-- Edit this bio freely. -->
+  <div class="lead">
     <p>
-      I am a PhD student in bioinformatics at <a href="https://www.stanford.edu/">Stanford University</a>.
-      I work on spatial transcriptomics, microscopy image analysis, and software that helps biologists
-      handle large datasets. Most of what I build is open source.
-    </p>
-    <p>
-      Right now I am building <a href="https://github.com/aristoteleo/PantheonOS">PantheonOS</a>, an agent
-      framework for data-science workflows. Earlier I wrote <a href="https://github.com/GangCaoLab/CoolBox"
-        >CoolBox</a
-      > for genomic visualization and <a href="https://github.com/UFISH-Team/U-FISH">U-FISH</a> for detecting
-      spots in FISH images.
+      I am a postdoctoral scholar in Xiaojie Qiu's lab in the
+      <a href="https://genetics.stanford.edu/">Department of Genetics at Stanford</a>. I work on spatial
+      omics, microscopy image analysis, and building tools and agents for data science.
     </p>
   </div>
 
+  <section class="sec">
+    <div class="sec__label">
+      Publications
+      <a class="more" href="/publications/">All {publications.length} →</a>
+    </div>
+    <div class="sec__body">
+      <div class="pub-list">
+        {selectedPubs.map((p) => <PubItem pub={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec__label">
+      Projects
+      <a class="more" href="/projects/">All →</a>
+    </div>
+    <div class="sec__body">
+      <div class="cards">
+        {featured.map((p) => <ProjectCard project={p} />)}
+      </div>
+    </div>
+  </section>
+
   {
     news.length > 0 && (
-      <section class="section">
-        <div class="section__head">
-          <h2>News</h2>
+      <section class="sec">
+        <div class="sec__label">News</div>
+        <div class="sec__body">
+          <ul class="news">
+            {news.slice(0, 5).map((n) => (
+              <li>
+                <time>{n.date}</time>
+                <div class="news__body">
+                  <p set:html={n.html} />
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul class="news">
-          {news.slice(0, 5).map((n) => (
-            <li>
-              <time>{n.date}</time>
-              <div class="news__body">
-                <p set:html={n.html} />
-              </div>
-            </li>
-          ))}
-        </ul>
       </section>
     )
   }
 
-  <section class="section">
-    <div class="section__head">
-      <h2>Selected Projects</h2>
-      <a class="section__more" href="/projects/">All projects →</a>
+  <section class="sec">
+    <div class="sec__label">
+      Writing
+      <a class="more" href="/blog/">All →</a>
     </div>
-    <div class="cards">
-      {featured.map((p) => <ProjectCard project={p} />)}
+    <div class="sec__body">
+      <ul class="post-list">
+        {
+          recent.map((post) => {
+            const href = post.data.jump ?? `/blog/${post.id}/`;
+            return (
+              <li class="entry">
+                <time>{post.data.pubDate.getUTCFullYear()}</time>
+                <span class="entry__title">
+                  <a
+                    href={href}
+                    target={post.data.jump ? '_blank' : undefined}
+                    rel={post.data.jump ? 'noopener' : undefined}
+                  >
+                    {post.data.title}
+                  </a>
+                  {post.data.jump && <span class="ext-arrow"> ↗</span>}
+                </span>
+              </li>
+            );
+          })
+        }
+      </ul>
     </div>
   </section>
 
-  <section class="section">
-    <div class="section__head">
-      <h2>Recent Writing</h2>
-      <a class="section__more" href="/blog/">All posts →</a>
+  <section class="sec">
+    <div class="sec__label">
+      Life
+      <a class="more" href="/life/">More →</a>
     </div>
-    <ul class="post-list">
-      {
-        recent.map((post) => {
-          const href = post.data.jump ?? `/blog/${post.id}/`;
-          return (
-            <li class="entry">
-              <time>{post.data.pubDate.getFullYear()}</time>
-              <span class="entry__title">
-                <a
-                  href={href}
-                  target={post.data.jump ? '_blank' : undefined}
-                  rel={post.data.jump ? 'noopener' : undefined}
-                >
-                  {post.data.title}
-                </a>
-                {post.data.jump && <span class="ext-arrow"> ↗</span>}
-              </span>
-            </li>
-          );
-        })
-      }
-    </ul>
+    <div class="sec__body">
+      <div class="gallery">
+        {
+          lifePhotos.map((ph) => (
+            <figure>
+              <img src={ph.src} alt={ph.alt ?? ph.caption ?? ''} loading="lazy" />
+              {ph.caption && <figcaption>{ph.caption}</figcaption>}
+            </figure>
+          ))
+        }
+      </div>
+    </div>
   </section>
 </Base>
