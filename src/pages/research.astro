@@ -29,6 +29,8 @@ const rank = (a: Pub, b: Pub) => {
     topics.map((topic) => {
       const pubs = publications.filter((p) => (p.topic ?? 'other') === topic.key).sort(rank);
       if (pubs.length === 0) return null;
+      const shown = pubs.slice(0, 5);
+      const extra = pubs.length - shown.length;
       return (
         <section class="topic">
           <div class="topic__head">
@@ -44,10 +46,15 @@ const rank = (a: Pub, b: Pub) => {
             </div>
           </div>
           <div class="pub-list">
-            {pubs.map((p) => (
+            {shown.map((p) => (
               <PubItem pub={p} />
             ))}
           </div>
+          {extra > 0 && (
+            <a class="topic-more" href={site.scholar} target="_blank" rel="noopener">
+              + {extra} more on Google Scholar →
+            </a>
+          )}
         </section>
       );
     })
