@@ -55,7 +55,8 @@ export const projects: Project[] = [
   {
     name: 'U-FISH',
     category: 'science',
-    url: 'https://github.com/UFISH-Team/U-FISH',
+    url: 'https://ufish-team.github.io/#/',
+    repo: 'https://github.com/UFISH-Team/U-FISH',
     tagline: 'Deep-learning spot detection for FISH images',
     desc: 'Deep-learning based spot detection for FISH microscopy images.',
     image: '/software/ufish.png',
@@ -100,7 +101,8 @@ export const projects: Project[] = [
   {
     name: 'U-Probe',
     category: 'science',
-    url: 'https://github.com/UFISH-Team/U-Probe',
+    url: 'https://www.u-probe.org/',
+    repo: 'https://github.com/UFISH-Team/U-Probe',
     tagline: 'Universal, agentic probe design for spatial omics',
     desc: 'Universal and agentic probe design tool for imaging-based spatial omics.',
     image: '/software/uprobe.png',
