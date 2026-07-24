@@ -12,6 +12,10 @@ export const news: NewsItem[] = [
     html: 'Gave an online talk at the <a href="https://hit-webinar.com/">HIT Webinar</a> (<a href="https://hit-webinar.com/assets/poster/talk260425.jpg">poster</a>).',
   },
   {
+    date: '2026.04',
+    html: 'Posted the <a href="https://www.biorxiv.org/content/10.64898/2026.04.12.717982v1">U-Probe</a> preprint on bioRxiv.',
+  },
+  {
     date: '2026.03',
     html: 'Selected as a speaker at the 2026 Stanford Heart Center Research Day.',
   },
