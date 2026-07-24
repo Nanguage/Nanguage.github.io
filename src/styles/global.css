@@ -141,6 +141,12 @@ h3 { font-size: 1.16rem; margin: 1.7em 0 .4em; }
 .social a { color: var(--faint); display: inline-flex; transition: color .18s; }
 .social a:hover { color: var(--accent); }
 .social svg { width: 20px; height: 20px; fill: currentColor; }
+/* optical size balance: some glyphs fill their viewBox more than others */
+.social a[aria-label="GitHub"] svg,
+.social a[aria-label="LinkedIn"] svg { transform: scale(0.86); }
+.social a[aria-label="Email"] svg,
+.social a[aria-label="Google Scholar"] svg { transform: scale(1.12); }
+.social a[aria-label="Twitter / X"] svg { transform: scale(1.04); }
 
 /* ---- editorial section (margin label + content) ---- */
 .sec { display: grid; grid-template-columns: var(--label-col) 1fr; gap: 30px; padding: 34px 0; border-top: 1px solid var(--border); }
