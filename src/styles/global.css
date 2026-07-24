@@ -106,9 +106,9 @@ h3 { font-size: 1.16rem; margin: 1.7em 0 .4em; }
 
 /* ---- masthead (home) ---- */
 .masthead { padding: 54px 0 0; }
-.masthead__inner { display: flex; gap: 34px; align-items: flex-start; }
+.masthead__inner { display: flex; gap: 34px; align-items: stretch; }
 .masthead__photo {
-  flex: 0 0 132px; width: 132px; height: 132px; border-radius: 12px;
+  flex: 0 0 132px; width: 132px; align-self: stretch; min-height: 132px; border-radius: 12px;
   background-color: var(--surface); background-size: cover; background-position: center;
   box-shadow: var(--shadow);
 }
@@ -233,7 +233,7 @@ img.is-dark { display: none; }
 }
 .card:hover { border-color: var(--faint); }
 .card__fig { flex: 0 0 132px; align-self: stretch; position: relative; overflow: hidden; line-height: 0; border-right: 1px solid var(--border); background: var(--surface); }
-.card__fig img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.card__fig img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .card__body { flex: 1 1 auto; min-width: 0; padding: 15px 16px; display: flex; flex-direction: column; }
 .card__title { font-family: var(--font-display); font-size: 1.08rem; font-weight: 560; margin: 0; }
 .card__title a { color: var(--ink); }
