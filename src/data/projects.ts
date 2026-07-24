@@ -44,10 +44,12 @@ export const projects: Project[] = [
     image: '/software/coolbox.png',
     category: 'science',
     url: 'https://github.com/GangCaoLab/CoolBox',
+    tagline: 'Genomic data visualization in Jupyter',
     desc: 'Jupyter-based genomic data visualization toolkit for Hi-C, ChIP-seq, and tracks.',
     lang: 'Python',
     color: '#3572A5',
     stars: 260,
+    highlight: true,
     featured: true,
   },
   {

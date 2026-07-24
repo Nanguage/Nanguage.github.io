@@ -1,8 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import Social from '../components/Social.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import FeatureCard from '../components/FeatureCard.astro';
 import { site } from '../data/site';
 import { projects } from '../data/projects';
 import { news } from '../data/news';
@@ -11,9 +9,11 @@ import { topics } from '../data/research';
 import { photos } from '../data/photos';
 import { getCollection } from 'astro:content';
 
-const highlights = projects.filter((p) => p.highlight);
-const featuredCompact = projects.filter((p) => p.featured && !p.highlight);
 const topTopics = topics.slice(0, 3);
+const homeSoftwareNames = ['PantheonOS', 'Virtual Embryo', 'U-FISH'];
+const homeSoftware = homeSoftwareNames
+  .map((n) => projects.find((p) => p.name === n))
+  .filter((p): p is (typeof projects)[number] => Boolean(p));
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
@@ -87,11 +87,23 @@ const lifePhotos = photos.slice(0, 3);
       <a class="more" href="/software/">All →</a>
     </div>
     <div class="sec__body">
-      <div class="features">
-        {highlights.map((p) => <FeatureCard project={p} />)}
-      </div>
-      <div class="cards" style="margin-top: 16px;">
-        {featuredCompact.map((p) => <ProjectCard project={p} />)}
+      <div class="topic-list">
+        {
+          homeSoftware.map((p) => (
+            <a class="topic-row" href={p.url} target="_blank" rel="noopener">
+              {p.image && (
+                <>
+                  <img class="topic-row__img is-light" src={p.image} alt="" loading="lazy" />
+                  <img class="topic-row__img is-dark" src={p.image.replace('.png', '-dark.png')} alt="" loading="lazy" />
+                </>
+              )}
+              <div>
+                <div class="topic-row__title">{p.name}</div>
+                <div class="topic-row__desc">{p.tagline ?? p.desc}</div>
+              </div>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>
