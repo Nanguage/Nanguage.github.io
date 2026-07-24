@@ -16,8 +16,8 @@ export const news: NewsItem[] = [
     html: 'Selected as a speaker at the 2026 Stanford Heart Center Research Day.',
   },
   {
-    date: '2026',
-    html: 'Working on <a href="https://github.com/aristoteleo/PantheonOS">PantheonOS</a>, an agent framework for data-science workflows.',
+    date: '2026.02',
+    html: 'Posted the <a href="https://www.biorxiv.org/content/10.64898/2026.02.26.707870v1">PantheonOS</a> preprint on bioRxiv.',
   },
   {
     date: '2024.11',
