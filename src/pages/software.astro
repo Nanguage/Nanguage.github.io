@@ -4,19 +4,44 @@ import ProjectCard from '../components/ProjectCard.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import { projects } from '../data/projects';
 
-const highlights = projects.filter((p) => p.highlight);
-const rest = projects.filter((p) => !p.highlight);
+const cats = [
+  { key: 'science', title: 'Science' },
+  { key: 'tool', title: 'Tool' },
+  { key: 'fun', title: 'Fun' },
+];
 ---
 
 <Base title="Software" description="Open-source software and research tools I build and maintain.">
   <div class="page">
     <h1 class="page-title">Software</h1>
     <p class="page-subtitle">Open-source software and research tools I build and maintain.</p>
-    <div class="features">
-      {highlights.map((p) => <FeatureCard project={p} />)}
-    </div>
-    <div class="cards" style="margin-top: 18px;">
-      {rest.map((p) => <ProjectCard project={p} />)}
-    </div>
+
+    {
+      cats.map((cat) => {
+        const items = projects.filter((p) => (p.category ?? 'tool') === cat.key);
+        if (items.length === 0) return null;
+        const highlights = items.filter((p) => p.highlight);
+        const rest = items.filter((p) => !p.highlight);
+        return (
+          <section class="sw-cat">
+            <h2 class="sw-cat__title">{cat.title}</h2>
+            {highlights.length > 0 && (
+              <div class="features">
+                {highlights.map((p) => (
+                  <FeatureCard project={p} />
+                ))}
+              </div>
+            )}
+            {rest.length > 0 && (
+              <div class="cards" style={highlights.length > 0 ? 'margin-top: 16px;' : ''}>
+                {rest.map((p) => (
+                  <ProjectCard project={p} />
+                ))}
+              </div>
+            )}
+          </section>
+        );
+      })
+    }
   </div>
 </Base>

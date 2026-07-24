@@ -1,11 +1,17 @@
 ---
 import type { Project } from '../data/projects';
 const { project } = Astro.props as { project: Project };
+const imageDark = project.image?.replace('.png', '-dark.png');
+const primaryIsRepo = project.url.includes('github.com');
+const primaryLabel = primaryIsRepo ? 'GitHub' : 'Website';
 ---
 <article class="feature">
   {project.image && (
     <a class="feature__imgwrap" href={project.url} target="_blank" rel="noopener">
-      <img class="feature__img" src={project.image} alt={`${project.name} website`} loading="lazy" />
+      <img class="feature__img is-light" src={project.image} alt={`${project.name} figure`} loading="lazy" />
+      {imageDark && (
+        <img class="feature__img is-dark" src={imageDark} alt={`${project.name} figure`} loading="lazy" />
+      )}
     </a>
   )}
   <div class="feature__body">
@@ -15,7 +21,7 @@ const { project } = Astro.props as { project: Project };
     {project.tagline && <p class="feature__tag">{project.tagline}</p>}
     <p class="feature__desc">{project.desc}</p>
     <div class="feature__links">
-      <a href={project.url} target="_blank" rel="noopener">Website ↗</a>
+      <a href={project.url} target="_blank" rel="noopener">{primaryLabel} ↗</a>
       {project.repo && <a href={project.repo} target="_blank" rel="noopener">GitHub ↗</a>}
       {project.stars && <span class="feature__stars">★ {project.stars}</span>}
     </div>

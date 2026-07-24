@@ -9,6 +9,7 @@ export type Project = {
   repo?: string; // GitHub link, when `url` points to a website
   image?: string; // thumbnail for highlighted cards
   highlight?: boolean; // large featured card with image
+  category?: 'science' | 'tool' | 'fun';
   featured?: boolean; // shown on the homepage
 };
 
@@ -16,11 +17,12 @@ export type Project = {
 export const projects: Project[] = [
   {
     name: 'PantheonOS',
+    category: 'science',
     url: 'https://pantheonos.stanford.edu/',
     tagline: 'The AgentOS that redefines data science',
     desc: 'An evolvable, distributed multi-agent framework and harness for automatic scientific discovery.',
     repo: 'https://github.com/aristoteleo/PantheonOS',
-    image: '/projects/pantheonos.jpg',
+    image: '/software/pantheonos.png',
     lang: 'Python',
     color: '#3572A5',
     stars: 473,
@@ -29,15 +31,18 @@ export const projects: Project[] = [
   },
   {
     name: 'Virtual Embryo',
+    category: 'science',
     url: 'https://virtualembryo.ai/',
     tagline: 'Developmental biology in the era of AI',
     desc: 'An interactive AI atlas of mouse embryogenesis — 3D reconstructions, histology, and gene expression across 28 stages, with a spatiotemporal morphogenesis predictor and open REST / MCP endpoints.',
-    image: '/projects/virtualembryo.jpg',
+    image: '/software/virtualembryo.png',
     highlight: true,
     featured: true,
   },
   {
     name: 'CoolBox',
+    image: '/software/coolbox.png',
+    category: 'science',
     url: 'https://github.com/GangCaoLab/CoolBox',
     desc: 'Jupyter-based genomic data visualization toolkit for Hi-C, ChIP-seq, and tracks.',
     lang: 'Python',
@@ -47,15 +52,21 @@ export const projects: Project[] = [
   },
   {
     name: 'U-FISH',
+    category: 'science',
     url: 'https://github.com/UFISH-Team/U-FISH',
+    tagline: 'Deep-learning spot detection for FISH images',
     desc: 'Deep-learning based spot detection for FISH microscopy images.',
+    image: '/software/ufish.png',
     lang: 'Python',
     color: '#3572A5',
     stars: 34,
+    highlight: true,
     featured: true,
   },
   {
     name: 'AniNet',
+    image: '/software/aninet.png',
+    category: 'fun',
     url: 'https://github.com/AniNet-Project/AniNet',
     desc: 'Interactive character-relationship network visualization for anime, manga, and games.',
     lang: 'TypeScript',
@@ -65,6 +76,8 @@ export const projects: Project[] = [
   },
   {
     name: 'bioView',
+    image: '/software/bioview.png',
+    category: 'tool',
     url: 'https://github.com/Nanguage/bioView',
     desc: 'Readability enhancement tool for bioinformatics file formats (FASTQ / FASTA / SAM).',
     lang: 'Nim',
@@ -74,6 +87,8 @@ export const projects: Project[] = [
   },
   {
     name: 'executor-engine',
+    image: '/software/executor-engine.png',
+    category: 'tool',
     url: 'https://github.com/Nanguage/executor-engine',
     desc: 'Effortless, flexible, and powerful job execution engine for Python.',
     lang: 'Python',
@@ -82,14 +97,21 @@ export const projects: Project[] = [
   },
   {
     name: 'U-Probe',
+    category: 'science',
     url: 'https://github.com/UFISH-Team/U-Probe',
+    tagline: 'Universal, agentic probe design for spatial omics',
     desc: 'Universal and agentic probe design tool for imaging-based spatial omics.',
+    image: '/software/uprobe.png',
     lang: 'Python',
     color: '#3572A5',
     stars: 4,
+    highlight: true,
+    featured: true,
   },
   {
     name: 'web-python-console',
+    image: '/software/web-python-console.png',
+    category: 'tool',
     url: 'https://github.com/Nanguage/web-python-console',
     desc: 'A browser-based Python console powered by Pyodide and ImJoy.',
     lang: 'HTML',
@@ -98,6 +120,8 @@ export const projects: Project[] = [
   },
   {
     name: 'funcdesc',
+    image: '/software/funcdesc.png',
+    category: 'tool',
     url: 'https://github.com/Nanguage/funcdesc',
     desc: 'Describe, validate, and introspect Python function inputs and outputs.',
     lang: 'Python',
@@ -106,9 +130,19 @@ export const projects: Project[] = [
   },
   {
     name: 'executor-view',
+    image: '/software/executor-view.png',
+    category: 'tool',
     url: 'https://github.com/Nanguage/executor-view',
     desc: 'Web interface for the executor HTTP server.',
     lang: 'TypeScript',
     color: '#3178c6',
+  },
+  {
+    name: 'Rainbow-Fart-MBG',
+    image: '/software/rainbow-fart.png',
+    url: 'https://github.com/Nanguage/Rainbow-Fart-MBG',
+    desc: 'A Ma Baoguo voice pack for the Rainbow-Fart VSCode plugin — coding keywords trigger meme audio clips.',
+    stars: 452,
+    category: 'fun',
   },
 ];
