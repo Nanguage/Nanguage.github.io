@@ -80,12 +80,25 @@ h3 { font-size: 1.16rem; margin: 1.7em 0 .4em; }
 /* ---- top nav ---- */
 .site-nav { position: sticky; top: 0; z-index: 40; background: var(--bg); border-bottom: 1px solid var(--border); }
 .site-nav .container { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-.site-nav .brand { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--ink); }
+.site-nav .brand { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
 .site-nav .brand:hover { text-decoration: none; color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 2px; }
 .nav-links { display: flex; align-items: center; gap: 2px; }
 .nav-links a { color: var(--muted); font-size: .9rem; padding: 6px 9px; border-radius: 7px; }
 .nav-links a:hover { color: var(--ink); background: var(--accent-soft); text-decoration: none; }
 .nav-links a.active { color: var(--accent); }
+.nav-toggle {
+  display: none; align-items: center; justify-content: center;
+  width: 34px; height: 34px; margin-left: 4px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: transparent; color: var(--muted); cursor: pointer;
+  transition: color .18s, border-color .18s;
+}
+.nav-toggle:hover { color: var(--ink); border-color: var(--faint); }
+.nav-toggle svg { width: 19px; height: 19px; }
+.nav-toggle .icon-close { display: none; }
+.nav-toggle[aria-expanded="true"] .icon-menu { display: none; }
+.nav-toggle[aria-expanded="true"] .icon-close { display: block; }
 
 .theme-toggle {
   display: inline-flex; align-items: center; justify-content: center;
@@ -395,7 +408,19 @@ code, pre, kbd { font-family: var(--font-mono); }
   .masthead__photo { flex-basis: auto; width: 104px; height: 104px; align-self: flex-start; }
   .masthead__name { font-size: 2.4rem; }
   .cards { grid-template-columns: 1fr; }
-  .nav-links a { padding: 6px 6px; font-size: .85rem; }
   .news li { flex-direction: column; gap: 2px; }
   .news time { flex-basis: auto; }
+
+  /* collapse nav into a hamburger dropdown */
+  .nav-toggle { display: inline-flex; }
+  .nav-links {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 2px;
+    padding: 8px 20px 14px;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow); display: none;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 11px 10px; font-size: 1.02rem; border-radius: 8px; }
+  .nav-links a.active { background: var(--accent-soft); }
 }
