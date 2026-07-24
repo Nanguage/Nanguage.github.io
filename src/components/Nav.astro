@@ -7,8 +7,8 @@ const on = (p: string) => (p === '/' ? path === '/' : path.startsWith(p));
   <div class="container">
     <a class="brand" href="/">{site.name}</a>
     <div class="nav-links">
-      <a href="/publications/" class:list={[{ active: on('/publications') }]}>Publications</a>
-      <a href="/projects/" class:list={[{ active: on('/projects') }]}>Projects</a>
+      <a href="/research/" class:list={[{ active: on('/research') }]}>Research</a>
+      <a href="/software/" class:list={[{ active: on('/software') }]}>Software</a>
       <a href="/blog/" class:list={[{ active: on('/blog') }]}>Blog</a>
       <a href="/life/" class:list={[{ active: on('/life') }]}>Life</a>
       <a href="/about/" class:list={[{ active: on('/about') }]}>About</a>

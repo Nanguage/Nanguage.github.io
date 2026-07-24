@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import PubItem from '../components/PubItem.astro';
+import { site } from '../data/site';
+import { publications } from '../data/publications';
+import { topics } from '../data/research';
+
+const byYear = (a: (typeof publications)[number], b: (typeof publications)[number]) => b.year - a.year;
+---
+
+<Base title="Research" description="Weize Xu's research, organized by theme.">
+  <div class="page" style="padding-bottom: 6px;">
+    <h1 class="page-title">Research</h1>
+    <p class="page-subtitle">
+      {publications.length} papers, grouped by theme ·
+      <a href={site.scholar} target="_blank" rel="noopener">Google Scholar</a>
+    </p>
+  </div>
+
+  {
+    topics.map((topic) => {
+      const pubs = publications.filter((p) => (p.topic ?? 'other') === topic.key).sort(byYear);
+      if (pubs.length === 0) return null;
+      return (
+        <section class="topic">
+          <div class="topic__head">
+            {topic.image && <img class="topic__img" src={topic.image} alt="" loading="lazy" />}
+            <div>
+              <h2 class="topic__title">{topic.title}</h2>
+              <p class="topic__desc">{topic.desc}</p>
+            </div>
+          </div>
+          <div class="pub-list">
+            {pubs.map((p) => (
+              <PubItem pub={p} />
+            ))}
+          </div>
+        </section>
+      );
+    })
+  }
+</Base>

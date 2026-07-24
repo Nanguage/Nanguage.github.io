@@ -145,6 +145,18 @@ h3 { font-size: 1.16rem; margin: 1.7em 0 .4em; }
   .sec__label .more { display: inline; margin: 0 0 0 12px; }
 }
 
+/* ---- research topics ---- */
+.topic { padding: 36px 0; border-top: 1px solid var(--border); }
+.topic:first-of-type { border-top: 0; padding-top: 10px; }
+.topic__head { display: flex; gap: 20px; align-items: center; margin-bottom: 12px; }
+.topic__img {
+  flex: 0 0 auto; width: 88px; height: 88px; border-radius: 12px;
+  border: 1px solid var(--border); object-fit: cover; background: var(--surface);
+}
+.topic__title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 560; margin: 0; }
+.topic__desc { color: var(--muted); font-size: .95rem; margin: 5px 0 0; max-width: 62ch; }
+@media (max-width: 620px) { .topic__head { align-items: flex-start; } .topic__img { width: 66px; height: 66px; } }
+
 /* ---- publications ---- */
 .pub-list { display: flex; flex-direction: column; }
 .pub { padding: 14px 0; border-bottom: 1px solid var(--border); }
