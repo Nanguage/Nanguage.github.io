@@ -142,6 +142,16 @@ export const projects: Project[] = [
     color: '#3178c6',
   },
   {
+    name: 'oneFace',
+    image: '/software/oneface.png',
+    category: 'tool',
+    url: 'https://github.com/Nanguage/oneFace',
+    desc: 'Generate CLI, Qt GUI, and Dash web-app interfaces from one Python function.',
+    lang: 'Python',
+    color: '#3572A5',
+    stars: 41,
+  },
+  {
     name: 'Rainbow-Fart-MBG',
     image: '/software/rainbow-fart.png',
     url: 'https://github.com/Nanguage/Rainbow-Fart-MBG',

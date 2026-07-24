@@ -19,7 +19,7 @@ const lifePhotos = photos.slice(0, 3);
 <Base>
   <header class="masthead">
     <div class="masthead__inner">
-      <img class="masthead__photo" src={site.photo} alt={site.name} width="132" height="132" />
+      <div class="masthead__photo" style={`background-image: url(${site.photo})`} role="img" aria-label={site.name}></div>
       <div class="masthead__body">
         <h1 class="masthead__name">{site.name}</h1>
         <p class="masthead__role">{site.role}</p>

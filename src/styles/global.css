@@ -106,10 +106,11 @@ h3 { font-size: 1.16rem; margin: 1.7em 0 .4em; }
 
 /* ---- masthead (home) ---- */
 .masthead { padding: 54px 0 0; }
-.masthead__inner { display: flex; gap: 34px; align-items: flex-start; }
+.masthead__inner { display: flex; gap: 34px; align-items: stretch; }
 .masthead__photo {
-  flex: 0 0 auto; width: 132px; height: 132px; border-radius: 12px;
-  object-fit: cover; background: var(--surface); box-shadow: var(--shadow);
+  flex: 0 0 140px; align-self: stretch; min-height: 132px; border-radius: 12px;
+  background-color: var(--surface); background-size: cover; background-position: center;
+  box-shadow: var(--shadow);
 }
 .masthead__body { flex: 1 1 auto; min-width: 0; }
 .masthead__name { font-family: var(--font-display); font-size: 3rem; line-height: 1.0; font-weight: 560; letter-spacing: -.015em; margin: 0; }
@@ -390,8 +391,8 @@ code, pre, kbd { font-family: var(--font-mono); }
 /* ---- responsive ---- */
 @media (max-width: 620px) {
   body { font-size: 16px; }
-  .masthead__inner { flex-direction: column; gap: 20px; }
-  .masthead__photo { width: 104px; height: 104px; }
+  .masthead__inner { flex-direction: column; gap: 20px; align-items: flex-start; }
+  .masthead__photo { flex-basis: auto; width: 104px; height: 104px; align-self: flex-start; }
   .masthead__name { font-size: 2.4rem; }
   .cards { grid-template-columns: 1fr; }
   .nav-links a { padding: 6px 6px; font-size: .85rem; }
