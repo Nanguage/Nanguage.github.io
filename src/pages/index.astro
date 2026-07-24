@@ -7,17 +7,12 @@ import { news } from '../data/news';
 import { publications } from '../data/publications';
 import { topics } from '../data/research';
 import { photos } from '../data/photos';
-import { getCollection } from 'astro:content';
 
 const topTopics = topics.slice(0, 3);
 const homeSoftwareNames = ['PantheonOS', 'Virtual Embryo', 'U-FISH'];
 const homeSoftware = homeSoftwareNames
   .map((n) => projects.find((p) => p.name === n))
   .filter((p): p is (typeof projects)[number] => Boolean(p));
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
-);
-const recent = posts.slice(0, 5);
 const lifePhotos = photos.slice(0, 3);
 ---
 
@@ -33,12 +28,14 @@ const lifePhotos = photos.slice(0, 3);
         </p>
         <div class="masthead__meta">
           <Social />
-          <span class="metrics">
-            <a href={site.scholar} target="_blank" rel="noopener">Google Scholar</a>{
-              site.scholarMetrics &&
-                ` · ${site.scholarMetrics.citations} citations · h-index ${site.scholarMetrics.hIndex}`
-            }
-          </span>
+          {
+            site.scholarMetrics && (
+              <span class="metrics">
+                <a href={site.scholar} target="_blank" rel="noopener">Google Scholar</a> ·
+                {site.scholarMetrics.citations} citations · h-index {site.scholarMetrics.hIndex}
+              </span>
+            )
+          }
         </div>
       </div>
     </div>
@@ -143,37 +140,6 @@ const lifePhotos = photos.slice(0, 3);
       </section>
     )
   }
-
-  <section class="sec">
-    <div class="sec__label">
-      Writing
-      <a class="more" href="/blog/">All →</a>
-    </div>
-    <div class="sec__body">
-      <ul class="post-list">
-        {
-          recent.map((post) => {
-            const href = post.data.jump ?? `/blog/${post.id}/`;
-            return (
-              <li class="entry">
-                <time>{post.data.pubDate.getUTCFullYear()}</time>
-                <span class="entry__title">
-                  <a
-                    href={href}
-                    target={post.data.jump ? '_blank' : undefined}
-                    rel={post.data.jump ? 'noopener' : undefined}
-                  >
-                    {post.data.title}
-                  </a>
-                  {post.data.jump && <span class="ext-arrow"> ↗</span>}
-                </span>
-              </li>
-            );
-          })
-        }
-      </ul>
-    </div>
-  </section>
 
   <section class="sec">
     <div class="sec__label">
