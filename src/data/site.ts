@@ -6,7 +6,7 @@ export const site = {
     'Weize Xu — postdoctoral scholar in the Qiu Lab, Department of Genetics, Stanford. Spatial omics, microscopy image analysis, and open-source tools & agents for data science.',
   role: 'Postdoctoral Scholar, Computational Biology',
   affiliation: 'Qiu Lab · Stanford Genetics',
-  affiliationUrl: 'https://genetics.stanford.edu/',
+  affiliationUrl: 'https://www.devo-evo.com/',
   location: 'Stanford, CA',
   email: 'wzxu@stanford.edu',
   github: 'Nanguage',
