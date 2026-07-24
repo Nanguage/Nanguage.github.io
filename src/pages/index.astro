@@ -3,24 +3,17 @@ import Base from '../layouts/Base.astro';
 import Social from '../components/Social.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import FeatureCard from '../components/FeatureCard.astro';
-import PubItem from '../components/PubItem.astro';
 import { site } from '../data/site';
 import { projects } from '../data/projects';
 import { news } from '../data/news';
 import { publications } from '../data/publications';
+import { topics } from '../data/research';
 import { photos } from '../data/photos';
 import { getCollection } from 'astro:content';
 
 const highlights = projects.filter((p) => p.highlight);
 const featuredCompact = projects.filter((p) => p.featured && !p.highlight);
-// Homepage order: papers where I'm a lead author first (by year),
-// then reviews / co-authored highlights below.
-const isPrimary = (p: (typeof publications)[number]) => p.first || p.coFirst || p.corresponding;
-const _selected = publications.filter((p) => p.selected);
-const selectedPubs = [
-  ..._selected.filter(isPrimary).sort((a, b) => b.year - a.year),
-  ..._selected.filter((p) => !isPrimary(p)).sort((a, b) => b.year - a.year),
-];
+const topTopics = topics.slice(0, 3);
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
@@ -67,8 +60,23 @@ const lifePhotos = photos.slice(0, 3);
       <a class="more" href="/research/">All {publications.length} →</a>
     </div>
     <div class="sec__body">
-      <div class="pub-list">
-        {selectedPubs.map((p) => <PubItem pub={p} />)}
+      <div class="topic-list">
+        {
+          topTopics.map((t) => (
+            <a class="topic-row" href="/research/">
+              {t.image && (
+                <>
+                  <img class="topic-row__img is-light" src={t.image} alt="" loading="lazy" />
+                  <img class="topic-row__img is-dark" src={t.image.replace('.png', '-dark.png')} alt="" loading="lazy" />
+                </>
+              )}
+              <div>
+                <div class="topic-row__title">{t.title}</div>
+                <div class="topic-row__desc">{t.desc}</div>
+              </div>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>

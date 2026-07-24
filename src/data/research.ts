@@ -21,8 +21,14 @@ export const topics: Topic[] = [
     image: '/research/genome3d.png',
   },
   {
+    key: 'microbiology',
+    title: 'Microbiology',
+    desc: 'Host–pathogen biology and functional genomics of bacterial and viral infection.',
+    image: '/research/microbiology.png',
+  },
+  {
     key: 'other',
     title: 'Other contributions',
-    desc: 'Selected collaborative work across single-cell biology, immunology, and microbiology.',
+    desc: 'Selected collaborative work across single-cell biology, immunology, and gene delivery.',
   },
 ];

@@ -5,7 +5,15 @@ import { site } from '../data/site';
 import { publications } from '../data/publications';
 import { topics } from '../data/research';
 
-const byYear = (a: (typeof publications)[number], b: (typeof publications)[number]) => b.year - a.year;
+type Pub = (typeof publications)[number];
+const isLead = (p: Pub) => p.first || p.coFirst || p.corresponding;
+// Lead-author papers first, then by year (newest first).
+const rank = (a: Pub, b: Pub) => {
+  const la = isLead(a) ? 0 : 1;
+  const lb = isLead(b) ? 0 : 1;
+  if (la !== lb) return la - lb;
+  return b.year - a.year;
+};
 ---
 
 <Base title="Research" description="Weize Xu's research, organized by theme.">
@@ -19,12 +27,17 @@ const byYear = (a: (typeof publications)[number], b: (typeof publications)[numbe
 
   {
     topics.map((topic) => {
-      const pubs = publications.filter((p) => (p.topic ?? 'other') === topic.key).sort(byYear);
+      const pubs = publications.filter((p) => (p.topic ?? 'other') === topic.key).sort(rank);
       if (pubs.length === 0) return null;
       return (
         <section class="topic">
           <div class="topic__head">
-            {topic.image && <img class="topic__img" src={topic.image} alt="" loading="lazy" />}
+            {topic.image && (
+              <>
+                <img class="topic__img is-light" src={topic.image} alt="" loading="lazy" />
+                <img class="topic__img is-dark" src={topic.image.replace('.png', '-dark.png')} alt="" loading="lazy" />
+              </>
+            )}
             <div>
               <h2 class="topic__title">{topic.title}</h2>
               <p class="topic__desc">{topic.desc}</p>
