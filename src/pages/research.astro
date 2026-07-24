@@ -31,6 +31,12 @@ const rank = (a: Pub, b: Pub) => {
       if (pubs.length === 0) return null;
       const shown = pubs.slice(0, 5);
       const extra = pubs.length - shown.length;
+      const collapsible = topic.key === 'other';
+      const more = extra > 0 && (
+        <a class="topic-more" href={site.scholar} target="_blank" rel="noopener">
+          + {extra} more on Google Scholar →
+        </a>
+      );
       return (
         <section class="topic">
           <div class="topic__head">
@@ -45,15 +51,28 @@ const rank = (a: Pub, b: Pub) => {
               <p class="topic__desc">{topic.desc}</p>
             </div>
           </div>
-          <div class="pub-list">
-            {shown.map((p) => (
-              <PubItem pub={p} />
-            ))}
-          </div>
-          {extra > 0 && (
-            <a class="topic-more" href={site.scholar} target="_blank" rel="noopener">
-              + {extra} more on Google Scholar →
-            </a>
+          {collapsible ? (
+            <details class="pub-toggle">
+              <summary>
+                <span class="lbl-show">Show papers</span>
+                <span class="lbl-hide">Hide papers</span>
+              </summary>
+              <div class="pub-list">
+                {shown.map((p) => (
+                  <PubItem pub={p} />
+                ))}
+              </div>
+              {more}
+            </details>
+          ) : (
+            <>
+              <div class="pub-list">
+                {shown.map((p) => (
+                  <PubItem pub={p} />
+                ))}
+              </div>
+              {more}
+            </>
           )}
         </section>
       );

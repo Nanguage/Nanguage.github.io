@@ -157,6 +157,20 @@ h3 { font-size: 1.16rem; margin: 1.7em 0 .4em; }
 .topic__desc { color: var(--muted); font-size: .97rem; margin: 6px 0 0; max-width: 62ch; }
 .topic-more { display: inline-block; margin-top: 14px; font-size: .88rem; color: var(--muted); }
 .topic-more:hover { color: var(--accent); text-decoration: none; }
+
+/* collapsible papers (Other contributions) */
+.pub-toggle > summary {
+  cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 7px;
+  color: var(--muted); font-size: .92rem; padding: 2px 0;
+}
+.pub-toggle > summary::-webkit-details-marker { display: none; }
+.pub-toggle > summary::before { content: "▸"; font-size: .82em; color: var(--faint); transition: transform .15s ease; }
+.pub-toggle[open] > summary::before { transform: rotate(90deg); }
+.pub-toggle > summary:hover, .pub-toggle > summary:hover::before { color: var(--accent); }
+.pub-toggle .lbl-hide { display: none; }
+.pub-toggle[open] .lbl-show { display: none; }
+.pub-toggle[open] .lbl-hide { display: inline; }
+.pub-toggle .pub-list { margin-top: 8px; }
 @media (max-width: 620px) { .topic__head { align-items: flex-start; gap: 16px; } .topic__img { width: 92px; height: 92px; } }
 
 /* theme-aware image swap (light art on light bg / dark art on dark bg) */
