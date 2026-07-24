@@ -127,6 +127,11 @@ h3 { font-size: 1.16rem; margin: 1.7em 0 .4em; }
 .lead a { border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
 .lead a:hover { text-decoration: none; border-bottom-color: var(--accent); }
 
+/* research vision block */
+.vision { max-width: 64ch; margin: 22px 0 6px; padding-top: 20px; border-top: 1px solid var(--border); }
+.vision__label { font-family: var(--font-display); font-style: italic; font-size: 1.14rem; color: var(--ink); margin: 0 0 8px; }
+.vision__text { font-size: 1.04rem; line-height: 1.62; color: var(--ink); margin: 0; }
+
 /* social row */
 .social { display: flex; gap: 15px; align-items: center; }
 .social a { color: var(--faint); display: inline-flex; transition: color .18s; }
