@@ -128,9 +128,13 @@ h3 { font-size: 1.16rem; margin: 1.7em 0 .4em; }
 .lead a:hover { text-decoration: none; border-bottom-color: var(--accent); }
 
 /* research vision block */
-.vision { max-width: 64ch; margin: 22px 0 6px; padding-top: 20px; border-top: 1px solid var(--border); }
+.vision { display: flex; gap: 44px; align-items: center; justify-content: space-between; margin: 22px 0 6px; padding-top: 20px; border-top: 1px solid var(--border); }
+.vision__body { max-width: 58ch; }
 .vision__label { font-family: var(--font-display); font-style: italic; font-size: 1.14rem; color: var(--ink); margin: 0 0 8px; }
 .vision__text { font-size: 1.04rem; line-height: 1.62; color: var(--ink); margin: 0; }
+.vision__fig { flex: 0 0 auto; width: 244px; }
+.vision__fig img { width: 100%; height: auto; display: block; }
+@media (max-width: 720px) { .vision { flex-direction: column; align-items: flex-start; gap: 18px; } .vision__fig { width: 180px; } }
 
 /* social row */
 .social { display: flex; gap: 15px; align-items: center; }
