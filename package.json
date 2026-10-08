@@ -14,7 +14,7 @@
     "astro": "^7.2.8",
     "@astrojs/rss": "^4.0.0",
     "@astrojs/sitemap": "^3.0.0",
-    "katex": "^0.16.0",
+    "katex": "^0.18.2",
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0"
   }
